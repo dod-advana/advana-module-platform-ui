@@ -1,0 +1,19 @@
+
+.mega-menu-scrollbar::-webkit-scrollbar {
+	width: 10px;
+}
+
+/* Track */
+.mega-menu-scrollbar::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+/* Handle */
+.mega-menu-scrollbar::-webkit-scrollbar-thumb {
+	background: rgba(255,255,255,0.25);
+}
+
+/* Handle */
+.mega-menu-scrollbar::-webkit-scrollbar-thumb:hover {
+	background: rgba(255,255,255,1);
+}
