@@ -14,6 +14,7 @@ const FooterContainer = styled.div`
 `;
 
 const LinkButton = styled(Button)`
+	padding: 6px 8px;
 	&& {
 		background-color: transparent;
 		font-weight: 600;
