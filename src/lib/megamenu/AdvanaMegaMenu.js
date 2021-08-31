@@ -273,7 +273,7 @@ const AdvanaMegaMenu = (props) => {
 					<MenuBodyInner>
 						<MenuBodyContent>
 							{showCloseButton && menuOpen &&
-								<CloseMenuButton onClick={closeMegamenu} closeHeight={null} closeWidth={null} homePage={homePage} menuOpen={menuOpen}>
+								<CloseMenuButton onClick={closeMegamenu} closeHeight={null} closeWidth={null} homePage={homePage} menuOpen={menuOpen} data-testid="close">
 									<CloseIcon fontSize="large" />
 								</CloseMenuButton>
 							}

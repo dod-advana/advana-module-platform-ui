@@ -26,25 +26,29 @@ export async function getLinks() {
 	}
 }
 
+export function updateMenuDataWithPermissions(obj) {
+	Object.keys(obj).forEach((key) => {
+		if (key === 'permission') {
+			//Permission function exists in the spreadsheet, check the function if they have permission
+			if (!_.isNull(obj[key])) {
+				const permissionFunction = obj[key];
+				obj[key] = Permissions?.[permissionFunction]?.();
+			}
+			//Permission function is blank in the spreadsheeet, default to true
+			else {
+				obj[key] = true;
+			}
+		}
+
+		if (!_.isNull(obj[key]) && typeof obj[key] === 'object') {
+			updateMenuDataWithPermissions(obj[key]);
+		}
+	});
+}
+
 export function useUpdateMenuDataWithPermissions() {
 	const updateMenuDataWithPermissions = useCallback((obj) => {
-		Object.keys(obj).forEach((key) => {
-			if (key === 'permission') {
-				//Permission function exists in the spreadsheet, check the function if they have permission
-				if (!_.isNull(obj[key])) {
-					const permissionFunction = obj[key];
-					obj[key] = Permissions?.[permissionFunction]?.();
-				}
-				//Permission function is blank in the spreadsheeet, default to true
-				else {
-					obj[key] = true;
-				}
-			}
-
-			if (!_.isNull(obj[key]) && typeof obj[key] === 'object') {
-				updateMenuDataWithPermissions(obj[key]);
-			}
-		});
+		updateMenuDataWithPermissions
 	}, []);
 	return updateMenuDataWithPermissions;
 }

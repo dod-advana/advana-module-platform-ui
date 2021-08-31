@@ -1,0 +1,408 @@
+{
+	"About": {
+		"title": "About",
+		"description": "Advana helps the Department of Defense transform data into decisions and action. We're the only DoD analytics platform supporting users at all skill levels across a wide variety of National Defense use cases, touching warfighter missions and every DoD line of business.",
+		"link": "#/landing/about",
+		"links": [
+			{
+				"label": "About Overview",
+				"link": "#/landing/about",
+				"chip": null,
+				"description": "Advana helps the Department of Defense transform data into decisions and action. We're the only DoD analytics platform supporting users at all skill levels across a wide variety of National Defense use cases, touching warfighter missions and every DoD line of business.",
+				"newTab": false,
+				"permission": null,
+				"link_identifier": null,
+				"notAvailable": false
+			},
+			{
+				"label": "Who We Are",
+				"link": "#/landing/about/who",
+				"chip": null,
+				"description": null,
+				"newTab": false,
+				"permission": null,
+				"link_identifier": null,
+				"notAvailable": false
+			},
+			{
+				"label": "Our Story",
+				"link": "#/landing/about",
+				"chip": null,
+				"description": null,
+				"newTab": false,
+				"permission": null,
+				"link_identifier": null,
+				"notAvailable": false
+			},
+			{
+				"label": "Recognition",
+				"link": "#/landing/about/recognition",
+				"chip": null,
+				"description": null,
+				"newTab": false,
+				"permission": null,
+				"link_identifier": null,
+				"notAvailable": false
+			},
+			{
+				"label": "Laws, Regulations, and Policy",
+				"link": "#/landing/about/laws",
+				"chip": null,
+				"description": null,
+				"newTab": false,
+				"permission": null,
+				"link_identifier": null,
+				"notAvailable": false
+			},
+			{
+				"label": "Partners",
+				"link": "#/landing/partners",
+				"chip": null,
+				"description": "",
+				"newTab": false,
+				"permission": null,
+				"link_identifier": null,
+				"notAvailable": false
+			},
+			{
+				"label": "Issues",
+				"link": "https://www.google.com",
+				"chip": null,
+				"description": "",
+				"newTab": false,
+				"permission": null,
+				"link_identifier": null,
+				"notAvailable": false
+			}
+		]
+	},
+	"Initiatives": {
+		"title": "Initiatives",
+		"description": "Initiatives are those use cases that move beyond solely data or analytic products. These are efforts that leverage Advana to enable new technologies that support a variety of DOD missions. ",
+		"link": "#/landing/initiatives",
+		"links": [
+			{
+				"label": "Initiatives Overview",
+				"link": "#/landing/initiatives",
+				"chip": null,
+				"description": "Initiatives are those use cases that move beyond solely data or analytic products. These are efforts that leverage Advana to enable new technologies that support a variety of DOD missions. ",
+				"newTab": false,
+				"permission": null,
+				"link_identifier": null,
+				"notAvailable": false
+			},
+			{
+				"label": "Use Case Intake",
+				"link": "https://support.advana.data.mil/plugins/servlet/desk/portal/10",
+				"chip": null,
+				"description": null,
+				"newTab": true,
+				"permission": null,
+				"link_identifier": null,
+				"notAvailable": false
+			},
+			{
+				"label": "COVID-19 Response",
+				"links": [
+					{
+						"label": "COVID-19 Response Overview",
+						"link": "#/landing/analytics/covid19",
+						"chip": null,
+						"description": null,
+						"newTab": false,
+						"permission": null,
+						"link_identifier": null,
+						"notAvailable": false
+					},
+					{
+						"label": "DoD COVID-19 Response and Operations Platform ",
+						"link": "https://covid-status.data.mil/#/",
+						"chip": null,
+						"description": null,
+						"newTab": true,
+						"permission": null,
+						"link_identifier": null,
+						"notAvailable": false
+					},
+					{
+						"label": "COVID-19 Analytics",
+						"link": "https://qlik.advana.data.mil/sense/app/22935916-ee66-4bfc-afe8-b4f1bda5880d",
+						"chip": null,
+						"description": null,
+						"newTab": true,
+						"permission": null,
+						"link_identifier": null,
+						"notAvailable": false
+					}
+				]
+			},
+			{
+				"label": "GAMECHANGER",
+				"links": [
+					{
+						"label": "GAMECHANGER Overview",
+						"link": "#/landing/gamechanger",
+						"chip": null,
+						"description": "GAMECHANGER is a cross-organizational Department initiative to develop an easily accessible common understanding of external Federal and internal Department guidelines, through analyzing guidance documents, and utilizing Natural Language Processing techniques.",
+						"newTab": false,
+						"permission": null,
+						"link_identifier": null,
+						"notAvailable": false
+					},
+					{
+						"label": "GAMECHANGER",
+						"link": "#/gamechanger",
+						"chip": null,
+						"description": null,
+						"newTab": false,
+						"permission": null,
+						"link_identifier": "gamechangerUpdated",
+						"notAvailable": false
+					}
+				]
+			},
+			{
+				"label": "Jupiter",
+				"link": "#/landing/jupiter",
+				"chip": null,
+				"description": null,
+				"newTab": false,
+				"permission": null,
+				"link_identifier": null,
+				"notAvailable": false
+			},
+			{
+				"label": "Robotic Process Automation (RPA)",
+				"links": [
+					{
+						"label": "RPA Overview",
+						"link": "#/landing/analytics/rpa",
+						"chip": null,
+						"description": null,
+						"newTab": false,
+						"permission": null,
+						"link_identifier": null,
+						"notAvailable": false
+					},
+					{
+						"label": "RPA Analytics App",
+						"link": "https://qlik.advana.data.mil/sense/app/21816936-487f-4784-b021-49200a4e9f9e/overview",
+						"chip": null,
+						"description": null,
+						"newTab": true,
+						"permission": null,
+						"link_identifier": null,
+						"notAvailable": false
+					}
+				]
+			},
+			{
+				"label": "Secretary of Defense Scheduling",
+				"link": "#/landing/scheduling",
+				"chip": null,
+				"description": null,
+				"newTab": false,
+				"permission": null,
+				"link_identifier": null,
+				"notAvailable": false
+			}
+		]
+	},
+	"Tools": {
+		"title": "Tools",
+		"description": "Houses all data and financial tools within Advana. Consider including 3rd party tools and others associated with initiatives i.e. Gamechanger and Archer",
+		"link": "#/landing/tools",
+		"links": [
+			{
+				"label": "Tools Overview",
+				"link": "#/landing/tools",
+				"chip": null,
+				"description": "Houses all data and financial tools within Advana. Consider including 3rd party tools and others associated with initiatives i.e. Gamechanger and Archer",
+				"newTab": false,
+				"permission": null,
+				"link_identifier": null,
+				"notAvailable": false
+			},
+			{
+				"label": "Data Tools",
+				"links": [
+					{
+						"label": "Data Tools Overview",
+						"link": "#/landing/data-tools",
+						"chip": null,
+						"description": null,
+						"newTab": false,
+						"permission": null,
+						"link_identifier": null,
+						"notAvailable": false
+					},
+					{
+						"label": "Data Catalog",
+						"link": "https://catalog.advana.data.mil/",
+						"chip": null,
+						"description": "Allows users to search, discover, access and understand data lineage of data sources, Common Data Models, glossaries, associated QLIK apps and usage across Analytical lines.",
+						"newTab": true,
+						"permission": null,
+						"link_identifier": "dataCatalogUpdated",
+						"notAvailable": false
+					},
+					{
+						"label": "Data Quality Dashboard",
+						"link": "#",
+						"chip": "In Development",
+						"description": null,
+						"newTab": true,
+						"permission": null,
+						"link_identifier": null,
+						"notAvailable": true
+					},
+					{
+						"label": "Data Status Tracker (DST)",
+						"link": "#/dst",
+						"chip": null,
+						"description": "With the Data Status Tracker you can find out the status of each data system and where it currently is in the lifecycle. You can also look at logs of each file received in Advana and associated metrics.",
+						"newTab": false,
+						"permission": null,
+						"link_identifier": "dstUpdated",
+						"notAvailable": false
+					},
+					{
+						"label": "Data Wrangling with Trifacta",
+						"link": "https://trifacta.advana.data.mil/",
+						"chip": null,
+						"description": "Data Wrangling for Trifecta consistently curates clean, organized data flows allowing users to rapidly explore, combine, and refine complex data sets with minimal guidance.",
+						"newTab": false,
+						"permission": null,
+						"link_identifier": null,
+						"notAvailable": false
+					},
+					{
+						"label": "External Data Loader (EDL)",
+						"link": "#/data-portal",
+						"chip": null,
+						"description": "External Data Loader (EDL) allows users to upload data into Advana through ingesting and processing by StreamSets pipelines via Web Application interface.  Files are uploaded to a designated landing zone in HDFS continuously monitored by StreamSets.",
+						"newTab": false,
+						"permission": "allowDataportal",
+						"link_identifier": "edlUpdated",
+						"notAvailable": false
+					},
+					{
+						"label": "File Browser",
+						"link": "#/filebrowser?path=/",
+						"chip": null,
+						"description": "File Browser allows users to browse and download files on to HDFS.",
+						"newTab": false,
+						"permission": "allowFilebrowser",
+						"link_identifier": "fileBrowserUpdated",
+						"notAvailable": false
+					},
+					{
+						"label": "Master Data Management (MDM)",
+						"link": "#/datasetManagement",
+						"chip": null,
+						"description": "Allows you to manage master look up and reference tables. These tables are fully auditable and have transaction histories that are tracked for historical reference. The tables are used by automated workflows as well as for analytics purposes.",
+						"newTab": false,
+						"permission": "allowMdm",
+						"link_identifier": "mdmUpdated",
+						"notAvailable": false
+					},
+					{
+						"label": "SQL Builder",
+						"link": "#/sqlbuilder",
+						"chip": null,
+						"description": "SQL Builder provides users an interface to query the Advana database to identify tables and fields of interest, run queries and export the results to an Excel readable format.",
+						"newTab": false,
+						"permission": "allowDatabaseQuery",
+						"link_identifier": "sqlBuilderUpdated",
+						"notAvailable": false
+					}
+				]
+			},
+			{
+				"label": "Financial Tools",
+				"links": [
+					{
+						"label": "Financial Tools Overview",
+						"link": "#",
+						"chip": null,
+						"description": null,
+						"newTab": false,
+						"permission": null,
+						"link_identifier": null,
+						"notAvailable": true
+					},
+					{
+						"label": "Feeder Recon",
+						"link": "#/variance/summary",
+						"chip": null,
+						"description": "Feeder Recon tool provides an end-to-end reconciliation process to Defense Agencies and Military Services based on business rules that filter, summarize, and match transactions across systems. These business rules are defined by DFAS through coordination with system SMEs.",
+						"newTab": false,
+						"permission": "allowVariance",
+						"link_identifier": "feederReconUpdated",
+						"notAvailable": false
+					},
+					{
+						"label": "Financial Statement Drilldown (FSD)",
+						"link": "#/fsd",
+						"chip": null,
+						"description": "Financial Statement Drilldown (FSD) is a custom web application enabling interactive drilldown into financial statements.",
+						"newTab": false,
+						"permission": "allowFSD",
+						"link_identifier": "fsdUpdated",
+						"notAvailable": false
+					},
+					{
+						"label": "Fund Balance with Treasury (FBwT)",
+						"link": "#/fbwt",
+						"chip": null,
+						"description": "FBwT tool is taking over The Department 97 Reconciliation and Reporting Tool (DRRT) functionally to perform recon reconciliations for FBwT reporting to support audit-ability in compliance with the Financial Management Regulation (FMR).",
+						"newTab": false,
+						"permission": "allowFBWT",
+						"link_identifier": "fbwtUpdated",
+						"notAvailable": false
+					},
+					{
+						"label": "GL Workbooks (Formerly Audit Workbooks)",
+						"link": "#/dashboard",
+						"chip": null,
+						"description": "Audit Workbooks allow users to view and interact with different types of financial  reconciliations available in Advana, including General Ledger to Trial Balance, Feeder System to General Ledger, and Financial Statement Drilldown.",
+						"newTab": false,
+						"permission": "allowDashboard",
+						"link_identifier": null,
+						"notAvailable": false
+					},
+					{
+						"label": "Improper Payments",
+						"link": "#/improper-pay/metrics",
+						"chip": null,
+						"description": null,
+						"newTab": false,
+						"permission": "allowImproperPay",
+						"link_identifier": null,
+						"notAvailable": false
+					},
+					{
+						"label": "Notice of Findings and Recommendations (NFR) Dashboard",
+						"link": "https://qlik.advana.data.mil/sense/app/c03155e9-9f4d-407b-b232-9364541ef924",
+						"chip": null,
+						"description": null,
+						"newTab": true,
+						"permission": null,
+						"link_identifier": null,
+						"notAvailable": false
+					},
+					{
+						"label": "Notice of Findings and Recommendations (NFR) Database",
+						"link": "https://nfr.advana.data.mil/",
+						"chip": null,
+						"description": "NFR database tracks and reports NFR and Corrective Action Plan (CAP) progress to internal and external stakeholders, giving financial managers a holistic view of DoD financial management issues.",
+						"newTab": true,
+						"permission": null,
+						"link_identifier": "nfrUpdated",
+						"notAvailable": false
+					}
+				]
+			}
+		]
+	}
+}
