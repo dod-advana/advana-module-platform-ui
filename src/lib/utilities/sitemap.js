@@ -66,7 +66,7 @@ export function changePage(link) {
 }
 
 export function getDisplayedHref(link) {
-	if (link[0] === '#') {
+	if (link && link[0] === '#') {
 		if (Config.MEGA_MENU_BASE_DOMAIN) {
 			return Config.MEGA_MENU_BASE_DOMAIN + (link || '#nolink');
 		}
