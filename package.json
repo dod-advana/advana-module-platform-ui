@@ -1,7 +1,11 @@
 {
-	"name": "advana-platform-ui",
+	"name": "@dod-advana/advana-platform-ui",
 	"version": "1.0.5",
 	"private": false,
+	"repository": {
+	    "type": "git",
+	    "url": "git+https://github.com/dod-advana/advana-module-platform-ui.git"
+  	},
 	"babel": {
 		"presets": [
 			"@babel/preset-react",
