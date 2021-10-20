@@ -5,6 +5,7 @@ import PrimarySectionLinks from './PrimarySectionLinks';
 import SecondarySectionLinks from './SecondarySectionLinks';
 
 import { styles, MenuTitle, MenuDescription } from './AdvanaMegaMenuStyleElements';
+import Config from "../config/config";
 
 export default function AdvanaMegaMenuContent({
 	data={},
@@ -28,7 +29,7 @@ export default function AdvanaMegaMenuContent({
 			<Button variant={'contained'}
 				color="primary"
 				size={'large'}
-				style={{ marginTop: 20 }}
+				style={{ marginTop: 20, backgroundColor: Config.MEGA_MENU_HIGHLIGHT_COLOR }}
 				onClick={() => redirect(data?.link ?? '#')}
 			>
 				View Page

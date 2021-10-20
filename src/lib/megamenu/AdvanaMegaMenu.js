@@ -7,17 +7,27 @@ import styled from 'styled-components';
 import { Button } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close'
 import AdvanaMegaMenuContent from './AdvanaMegaMenuContent';
+import { changePage, getDynamicHeaderButtons, getLinks, useUpdateMenuDataWithPermissions } from '../utilities/sitemap';
+import Config from '../config/config';
+
+// advana images
 import AdvanaDark from '../images/AdvanaDarkTheme.png';
-import { getLinks, useUpdateMenuDataWithPermissions } from '../utilities/sitemap';
 import DoDLogo from '../images/DOD_color.png';
 import CDTOLogo from '../images/CDTO_logo.png';
 import ODCFOLogo from '../images/ODCFO_logo.png';
 
+// jupiter images
+import NavyDepartmentLogo from '../images/Jupiter_DON_logo.png';
+import MarinesLogo from '../images/Jupiter_USMC_logo.png';
+import NavyLogo from '../images/Jupiter_USN_logo.png';
+import JupiterLogo from '../images/Jupiter_logo.png';
+
 const MenuContainer = styled.div`
 	height: ${({ menuOpen, pillMenu }) => (menuOpen || pillMenu) ? '100%' : '100px'};
-    padding: ${({ homePage }) => homePage ? '4em 0 0 0' : '0'};
+    padding: ${({ homePage }) => homePage ? '2em 0 0 0' : '0'};
     color: white;
     position: ${({ pillMenu }) => pillMenu ? 'absolute' : 'fixed'};
+	top: ${({ pillMenu }) => pillMenu ? 'unset' : '0px'};
 	width: 100vw;
 	z-index: 1000;
 	margin-top: ${({ homePage, pillMenu }) => !homePage && !pillMenu ? '30px' : '0px'};
@@ -25,7 +35,7 @@ const MenuContainer = styled.div`
 
 const CloseMenuButton = styled.div`
 	float: right;
-	color: black
+	color: black;
 	height: ${({ closeHeight }) => closeHeight ?? '45px'};
     width: ${({ closeWidth }) => closeWidth ?? '45px'};
     background-color: white;
@@ -90,11 +100,11 @@ const HeaderButton = styled(Button)`
         border: none;
         font-weight: 600;
         letter-spacing: 3px;
-        color: ${({ value, currentvalue }) => value === currentvalue ? '#56B1AC' : 'white'};
+        color: ${({ value, currentvalue }) => value === currentvalue ? Config.MEGA_MENU_HIGHLIGHT_COLOR : 'white'};
         border-radius: 0;
         height: 3em;
         line-height: 24px;
-        border-bottom: ${({ value, currentvalue }) => value === currentvalue ? '2px solid #56B1AC' : '2px solid transparent'};
+        border-bottom: ${({ value, currentvalue }) => value === currentvalue ? `2px solid ${Config.MEGA_MENU_HIGHLIGHT_COLOR}` : '2px solid transparent'};
 		transition: border-bottom .1s;
 		font-size: 14px;
 
@@ -134,17 +144,6 @@ const MenuContent = styled.div`
     margin: 10px 0 0 0;
 `;
 
-const HEADER_BUTTONS = [
-	{ value: 'About', label: 'ABOUT', link: '/landing/about', subHeaders: false },
-	{ value: 'Analytics', label: 'ANALYTICS', link: '/landing/analytics', subHeaders: true },
-	{ value: 'Initiatives', label: 'INITIATIVES', link: '/landing/initiatives', subHeaders: true },
-	{ value: 'Tools', label: 'TOOLS', link: '/landing/data-tools', subHeaders: false },
-	// { value: 'communities', label: 'COMMUNITIES', link: '/landing/communities/all', subHeaders: true },
-	{ value: 'Applications', label: 'APPLICATIONS', link: '/landing/all', subHeaders: false },
-	{ value: 'Learn', label: 'LEARN', link: '/landing/learn', subHeaders: true },
-	{ value: 'Support', label: 'SUPPORT', link: '/landing/support', subHeaders: false },
-];
-
 const AdvanaMegaMenu = (props) => {
 	const {
 		showCloseButton,
@@ -160,14 +159,13 @@ const AdvanaMegaMenu = (props) => {
 
 	let history = useHistory();
 
-
 	//Recursive function to walk through the nested megamenu config and dynamically populate the permissions, where applicable
 	const updateMenuDataWithPermissions = useUpdateMenuDataWithPermissions()
 
 	useEffect(() => {
 		(async () => {
 			try {
-				const links = await getLinks()
+				const links = await getLinks();
 				updateMenuDataWithPermissions(links);
 				setMenuDataWithPermissions(links);
 
@@ -208,9 +206,30 @@ const AdvanaMegaMenu = (props) => {
 		}
 	}
 
+	const renderLogos = () => {
+		switch (Config.ENCLAVE) {
+			case 'jupiter':
+				return <>
+					<Logo src={NavyDepartmentLogo} alt='_navydeptlogo' onClick={() => redirect('#/')} />
+					<Logo src={MarinesLogo} alt='_marineslogo' onClick={() => redirect('#/')} />
+					<Logo src={NavyLogo} alt='_navylogo' onClick={() => redirect('#/')} />
+					<AdvanaLogo src={JupiterLogo} alt='jupiter_logo' onClick={() => redirect('#/')} />
+				</>;
+			default:
+				return <>
+					<Logo src={DoDLogo} alt='dod_logo' />
+					<Logo src={ODCFOLogo} alt='odcfo_logo' style={{ width: 57 }} />
+					<Logo src={CDTOLogo} alt='cdto_logo' />
+					<AdvanaLogo src={AdvanaDark} alt='advana_logo' onClick={() => redirect('#/')} />
+				</>;
+		}
+	}
+
 	const renderHeaderButtons = () => {
 		const buttons = [];
-		HEADER_BUTTONS.forEach(btn => {
+		const headerButtons = getDynamicHeaderButtons(menuDataWithPermissions);
+
+		headerButtons.forEach(btn => {
 
 			buttons.push(
 				<HeaderButton
@@ -235,7 +254,9 @@ const AdvanaMegaMenu = (props) => {
 						action: 'click',
 						name: 'SearchIcon'
 					});
-					window.location.href = '/#/search';
+
+					const openInNewTab = Config.MEGA_MENU_SEARCH_LINK?.[1] !== '#';
+					window.open(Config.MEGA_MENU_SEARCH_LINK, openInNewTab ? '_blank' : '_self');
 				}}>
 				<i className="fa fa-search"></i>
 			</HeaderButton>)
@@ -244,11 +265,9 @@ const AdvanaMegaMenu = (props) => {
 		return buttons;
 	}
 
-	const changePage = (link) => {
-		closeMegamenu()
-		// history.push(link);
-		if (link[0] === '#') window.location.href = '/' + link;
-		else window.open(link);
+	const redirect = (link) => {
+		closeMegamenu();
+		changePage(link);
 	}
 
 	return (
@@ -258,10 +277,7 @@ const AdvanaMegaMenu = (props) => {
 				<NavBar menuOpen={menuOpen} homePageTop={atTop} homePage={homePage} pillMenu={pillMenu}>
 					<NavBarInner pillMenu={pillMenu}>
 						<LogoContainer>
-							<Logo src={DoDLogo} alt='dod_logo' />
-							<Logo src={ODCFOLogo} alt='odcfo_logo' style={{ width: 57 }} />
-							<Logo src={CDTOLogo} alt='cdto_logo' />
-							<AdvanaLogo src={AdvanaDark} alt='advana_logo' onClick={() => changePage('#/')} />
+							{renderLogos()}
 						</LogoContainer>
 						<HeaderButtonContainer pillMenu={pillMenu}>
 							{renderHeaderButtons()}
@@ -280,7 +296,7 @@ const AdvanaMegaMenu = (props) => {
 							{currentHeader &&
 								<>
 									<MenuContent>
-										<AdvanaMegaMenuContent data={menuDataWithPermissions[currentHeader]} header={currentHeader} redirect={changePage} />
+										<AdvanaMegaMenuContent data={menuDataWithPermissions[currentHeader]} header={currentHeader} redirect={redirect} />
 									</MenuContent>
 								</>
 							}

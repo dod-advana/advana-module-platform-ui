@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import BadgeLabel from './BadgeLabel';
+import Config from '../config/config';
+import { getDisplayedHref } from '../utilities/sitemap';
 
 const Link = styled.a`
 	display: block;
@@ -61,9 +63,10 @@ export default function PrimarySectionLinks({ links = [], activePrimarySection, 
 		const hideLink = link.hideWithoutPermission && !link.permission;
 		const isDisabled = link.notAvailable || !!link.chip;
 		const color = isDisabled ? disabledColor : '#DDDDDD';
+		const href = getDisplayedHref(link.link);
 
 		return !hideLink && <Link
-			href={link.link || '#nolink'}
+			href={href}
 			onClick={handleClick(link.label, link.link, isDisabled)}
 			active={activePrimarySection === link.label}
 			key={'primary-link' + idx}

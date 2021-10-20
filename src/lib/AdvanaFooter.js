@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { Button, Modal } from '@material-ui/core';
+import { changePage, getDynamicHeaderButtons, useMegaMenuLinks } from "./utilities/sitemap";
 
 const FooterContainer = styled.div`
 	display: flex;
@@ -48,23 +48,14 @@ const ButtonRow = styled.div`
 	margin: 10px 0 0 0;
 `;
 
-const HEADER_BUTTONS = [
-	{ value: 'whoWeAre', label: 'About', link: '/landing/about' },
-	{ value: 'analytics', label: 'Analytics', link: '/landing/analytics' },
-	{ value: 'dataTools', label: 'Tools', link: '/landing/data-tools' },
-	{ value: 'communities', label: 'Communities', link: '/landing/communities/all' },
-	{ value: 'allApplications', label: 'All Applications', link: '/landing/all' },
-	{ value: 'support', label: 'Support', link: '/landing/support' },
-];
-
 export default () => {
+	let links = useMegaMenuLinks();
+	const headerButtons = getDynamicHeaderButtons(links);
 
-	const history = useHistory();
-
-	const links = HEADER_BUTTONS.map((button)=> (
-		<LinkButton key={button.value} onClick={() => history.push(button.link)}>{button.label}</LinkButton>
+	links = headerButtons.map((button) => (
+		<LinkButton key={button.value} onClick={() => changePage(button.link)}>{button.label}</LinkButton>
 	))
-	
+
 	const [disclaimerModalOpen, setDisclaimerModalOpen] = useState(false);
 
 	return(

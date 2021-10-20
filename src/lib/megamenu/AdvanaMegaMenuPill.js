@@ -4,6 +4,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
 import CloseIcon from '@material-ui/icons/Close';
 import AdvanaMegaMenu from './AdvanaMegaMenu';
+import Config from '../config/config';
 
 const primaryColor = '#13A792';
 
@@ -91,19 +92,18 @@ const AdvanaMegaMenuPill = (props) => {
 		setMenuOpen(!menuOpen);
 	}
 
-
 	return (
 		<>
 			<PillButton margin={margin} width={width} padding={padding} onClick={toggleMenu} menuOpen={menuOpen}>
 				<MenuIcon fontSize="large" style={{ color: menuOpen ? primaryColor : 'white' }} />
-				<TitleText>ADVANA</TitleText>
+				<TitleText>{Config.MEGA_MENU_PILL_TEXT}</TitleText>
 				<SearchButton onClick={() => {
 					trackEvent({
 						category: 'AdvanaMegaMenu_AdvanaMegaMenuPill',
 						action: 'click',
 						name: 'SearchIcon'
 					});
-					window.open('/#/search', '_blank')
+					window.open(Config.MEGA_MENU_SEARCH_LINK, '_blank')
 				}}><i className="fa fa-search" /></SearchButton>
 			</PillButton>
 			<CloseButton onClick={toggleMenu} closeHeight={closeHeight} closeWidth={closeWidth} menuOpen={menuOpen}>
