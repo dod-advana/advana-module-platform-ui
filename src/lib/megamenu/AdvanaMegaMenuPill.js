@@ -59,11 +59,10 @@ const CloseButton = styled.div`
     background-color: white;
     border-radius: 5px;
     cursor: pointer;
-    display: flex;
+    display: ${({ menuOpen }) => menuOpen ? 'flex' : 'none'};
     align-items: center;
     justify-content: center;
     z-index: 1010;
-    visibility: ${({ menuOpen }) => menuOpen ? 'visible' : 'hidden'};
     flex: .4;
     position: ${({ menuOpen }) => menuOpen ? 'fixed' : ''};
     right: ${({ menuOpen }) => menuOpen ? '30px' : ''};
