@@ -13,7 +13,7 @@ beforeAll(() => {
 
 test('adds permissions to links object passed in', () => {
 	const linksClone = _.cloneDeep(preprocessedMegaMenuLinks);
-	updateMenuDataWithPermissions(linksClone);
+	updateMenuDataWithPermissions(linksClone, permissions);
 	expect(linksClone).toEqual(processedMegaMenuLinks);
 });
 

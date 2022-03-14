@@ -7,7 +7,7 @@ axios.interceptors.response.use(
 		if (error?.response?.status === 401) {
 			window.location.href = window?.__env__?.REACT_APP_LOGIN_ROUTE || process.env.REACT_APP_LOGIN_ROUTE;
 		} else if (error?.response?.status === 403 && window.location.hash !== '#/unauthorized') {
-			// window.location.href = '#/unauthorized';
+			window.location.href = '#/unauthorized';
 		}
 		return Promise.reject(error);
 	}

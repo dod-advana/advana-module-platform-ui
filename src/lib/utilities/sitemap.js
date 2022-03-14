@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import _ from 'underscore';
 import axios from 'axios';
 import Config from '../config/config';
-import Permissions from './permissions';
+import permissions from './permissions';
 
 export async function getLinks() {
 	try {
@@ -26,13 +26,13 @@ export async function getLinks() {
 	}
 }
 
-export function updateMenuDataWithPermissions(obj) {
+export function updateMenuDataWithPermissions(obj, permissionsClass) {
 	Object.keys(obj).forEach((key) => {
 		if (key === 'permission') {
 			//Permission function exists in the spreadsheet, check the function if they have permission
 			if (!_.isNull(obj[key])) {
 				const permissionFunction = obj[key];
-				obj[key] = Permissions?.[permissionFunction]?.();
+				obj[key] = permissionsClass?.[permissionFunction]?.();
 			}
 			//Permission function is blank in the spreadsheeet, default to true
 			else {
@@ -41,14 +41,14 @@ export function updateMenuDataWithPermissions(obj) {
 		}
 
 		if (!_.isNull(obj[key]) && typeof obj[key] === 'object') {
-			updateMenuDataWithPermissions(obj[key]);
+			updateMenuDataWithPermissions(obj[key], permissionsClass);
 		}
 	});
 }
 
-export function useUpdateMenuDataWithPermissions() {
+export function useUpdateMenuDataWithPermissions(permissionsClass) {
 	const updateMenuDataWithPermissionsCb = useCallback((obj) => {
-		updateMenuDataWithPermissions(obj);
+		updateMenuDataWithPermissions(obj, permissionsClass);
 	}, []);
 	return updateMenuDataWithPermissionsCb;
 }
@@ -66,16 +66,17 @@ export function changePage(link) {
 }
 
 export function getDisplayedHref(link) {
-	if (link && link[0] === '#') {
-		if (Config.MEGA_MENU_BASE_DOMAIN) {
-			return Config.MEGA_MENU_BASE_DOMAIN + (link || '#nolink');
+	link = link || '#nolink';
+	if (link[0] === '#') {
+		if (Config.MEGA_MENU_BASE_DOMAIN && link !== '#nolink') {
+			return Config.MEGA_MENU_BASE_DOMAIN + link;
 		}
 	}
-	return link || '#nolink';
+	return link;
 }
 
-export function useMegaMenuLinks() {
-	const updateMenuDataWithPermissions = useUpdateMenuDataWithPermissions();
+export function useMegaMenuLinks(permissionsClass = permissions) {
+	const updateMenuDataWithPermissions = useUpdateMenuDataWithPermissions(permissionsClass);
 	const [links, setLinks] = useState({});
 
 	useEffect(() => {

@@ -9,6 +9,7 @@ import CloseIcon from '@material-ui/icons/Close'
 import AdvanaMegaMenuContent from './AdvanaMegaMenuContent';
 import { changePage, getDynamicHeaderButtons, getLinks, useUpdateMenuDataWithPermissions } from '../utilities/sitemap';
 import Config from '../config/config';
+import Permissions from '../utilities/permissions';
 
 // advana images
 import AdvanaDark from '../images/AdvanaDarkTheme.png';
@@ -90,7 +91,7 @@ const Logo = styled.img`
 `;
 
 const AdvanaLogo = styled.img`
-    width: 250px;
+    max-width: 250px;
     cursor: pointer;
 `;
 
@@ -107,6 +108,7 @@ const HeaderButton = styled(Button)`
         border-bottom: ${({ value, currentvalue }) => value === currentvalue ? `2px solid ${Config.MEGA_MENU_HIGHLIGHT_COLOR}` : '2px solid transparent'};
 		transition: border-bottom .1s;
 		font-size: 14px;
+		white-space: nowrap;
 
 		@media (max-width: 1470px) {
 			font-size: 12px;
@@ -149,7 +151,8 @@ const AdvanaMegaMenu = (props) => {
 		showCloseButton,
 		pillMenu,
 		defaultHeader,
-		homePage
+		homePage,
+		permissions = Permissions
 	} = props;
 	const { trackEvent } = useMatomo();
 	const [currentHeader, setCurrentHeader] = useState(null);
@@ -159,8 +162,8 @@ const AdvanaMegaMenu = (props) => {
 
 	let history = useHistory();
 
-	//Recursive function to walk through the nested megamenu config and dynamically populate the permissions, where applicable
-	const updateMenuDataWithPermissions = useUpdateMenuDataWithPermissions()
+	// Recursive function to walk through the nested megamenu config and dynamically populate the permissions, where applicable
+	const updateMenuDataWithPermissions = useUpdateMenuDataWithPermissions(permissions);
 
 	useEffect(() => {
 		(async () => {
@@ -261,6 +264,26 @@ const AdvanaMegaMenu = (props) => {
 				<i className="fa fa-search"></i>
 			</HeaderButton>)
 		}
+
+		buttons.push(
+			<HeaderButton
+				key={'header-profile'}
+				value={'profile'}
+				currentvalue={null}
+				size="small"
+				style={{ fontSize: '22px', marginLeft: -15 }}
+				onClick={() => {
+					trackEvent({
+						category: 'AdvanaMegaMenu_AdvanaMegaMenuPill',
+						action: 'click',
+						name: 'UserProfileIcon'
+					});
+					changePage(Config.PROFILE_LINK ?? '#/profile');
+				}}
+				aria-label="go to user profile">
+				<i className="fa fa-user" />
+			</HeaderButton>
+		)
 
 		return buttons;
 	}

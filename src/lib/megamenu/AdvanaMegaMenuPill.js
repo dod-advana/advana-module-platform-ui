@@ -6,8 +6,6 @@ import CloseIcon from '@material-ui/icons/Close';
 import AdvanaMegaMenu from './AdvanaMegaMenu';
 import Config from '../config/config';
 
-const primaryColor = '#13A792';
-
 const MenuContainer = styled.div`
     width: 100vw;
     height: ${({ menuOpen }) => menuOpen ? '100%' : '0%'};
@@ -28,7 +26,7 @@ export const PillButton = styled.div`
     float: right;
     margin: ${({ margin }) => margin ?? ''};
     color: white;
-	width: ${({ width }) => width ?? '170px'};
+	width: ${({ width }) => width ?? 'auto'};
     padding: ${({ padding }) => padding ?? '16px'};
     display: flex;
     align-items: center;
@@ -44,12 +42,21 @@ export const PillButton = styled.div`
 
 const SearchButton = styled.div`
 	border-left: 1px solid white;
-	padding-left: 8px;
-	padding-top: 8px;
-	padding-bottom: 8px;
+	border-right: 1px solid white;
+	padding: 8px;
 	font-size: 20px;
 	&:hover {
-		color: ${primaryColor};
+		color: ${Config.MEGA_MENU_HIGHLIGHT_COLOR};
+	}
+`;
+
+const UserButton = styled.div`
+	padding-left: 12px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+	font-size: 20px;
+	&:hover {
+		color: ${Config.MEGA_MENU_HIGHLIGHT_COLOR};
 	}
 `;
 
@@ -59,10 +66,11 @@ const CloseButton = styled.div`
     background-color: white;
     border-radius: 5px;
     cursor: pointer;
-    display: ${({ menuOpen }) => menuOpen ? 'flex' : 'none'};
+    display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1010;
+    visibility: ${({ menuOpen }) => menuOpen ? 'visible' : 'hidden'};
     flex: .4;
     position: ${({ menuOpen }) => menuOpen ? 'fixed' : ''};
     right: ${({ menuOpen }) => menuOpen ? '30px' : ''};
@@ -94,7 +102,7 @@ const AdvanaMegaMenuPill = (props) => {
 	return (
 		<>
 			<PillButton margin={margin} width={width} padding={padding} onClick={toggleMenu} menuOpen={menuOpen}>
-				<MenuIcon fontSize="large" style={{ color: menuOpen ? primaryColor : 'white' }} />
+				<MenuIcon fontSize="large" style={{ color: menuOpen ? Config.MEGA_MENU_HIGHLIGHT_COLOR : 'white' }} />
 				<TitleText>{Config.MEGA_MENU_PILL_TEXT}</TitleText>
 				<SearchButton onClick={() => {
 					trackEvent({
@@ -103,7 +111,20 @@ const AdvanaMegaMenuPill = (props) => {
 						name: 'SearchIcon'
 					});
 					window.open(Config.MEGA_MENU_SEARCH_LINK, '_blank')
-				}}><i className="fa fa-search" /></SearchButton>
+				}}>
+					<i className="fa fa-search" />
+				</SearchButton>
+
+				<UserButton onClick={() => {
+					trackEvent({
+						category: 'AdvanaMegaMenu_AdvanaMegaMenuPill',
+						action: 'click',
+						name: 'UserProfileIcon'
+					});
+					window.open(Config.MEGA_MENU_BASE_DOMAIN + '/#/profile', '_blank')
+				}} aria-label="go to user profile">
+					<i className="fa fa-user" />
+				</UserButton>
 			</PillButton>
 			<CloseButton onClick={toggleMenu} closeHeight={closeHeight} closeWidth={closeWidth} menuOpen={menuOpen}>
 				<CloseIcon fontSize="large" />
