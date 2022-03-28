@@ -48,7 +48,7 @@ const ButtonRow = styled.div`
 	margin: 10px 0 0 0;
 `;
 
-export default () => {
+export default ({extraLinks}) => {
 	let links = useMegaMenuLinks();
 	const headerButtons = getDynamicHeaderButtons(links);
 
@@ -62,6 +62,7 @@ export default () => {
 		<FooterContainer>
 			<LinkContainer>
 				{links}
+				{extraLinks}
 				<LinkButton key='disclaimer' onClick={() => setDisclaimerModalOpen(true)}>Disclaimer</LinkButton>
 			</LinkContainer>
 			<Spacer />
