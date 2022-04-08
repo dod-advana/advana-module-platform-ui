@@ -10,4 +10,5 @@ export default {
     MEGA_MENU_HEADER_SORT_ORDER: window?.__env__?.REACT_APP_MEGA_MENU_HEADER_SORT_ORDER || process.env.REACT_APP_MEGA_MENU_HEADER_SORT_ORDER || 'About, Analytics, Initiatives, Tools, Applications, Learn, Support',
     MEGA_MENU_BASE_DOMAIN: window?.__env__?.REACT_APP_MEGA_MENU_BASE_DOMAIN || process.env.REACT_APP_MEGA_MENU_BASE_DOMAIN,
     PROFILE_LINK: window?.__env__?.REACT_APP_PROFILE_LINK || process.env.REACT_APP_PROFILE_LINK,
+    COOKIE_DOMAIN: window?.__env__?.REACT_APP_COOKIE_DOMAIN || process.env.REACT_APP_COOKIE_DOMAIN || 'advana.data.mil',
 }

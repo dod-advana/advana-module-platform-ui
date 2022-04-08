@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
 import { Dialog, Button, DialogTitle, DialogContent, DialogActions, Typography } from '@material-ui/core'
+import Config from "./config/config";
 
 const AGREEMENT_KEY = 'data.mil-consent-agreed';
 
 const getIsOpen = () => {
-	let lastAgreement = localStorage.getItem(AGREEMENT_KEY);
-	if (!lastAgreement)
+	const cookieMap = {};
+	const cookies = document.cookie.split(';');
+	cookies.forEach(cookie => {
+		const splitCookie = cookie.split('=');
+		cookieMap[splitCookie[0].trim()] = splitCookie[1];
+	});
+	if (!Object.keys(cookieMap).includes(AGREEMENT_KEY))
 		return true;
 
 	try {
 		const twoHoursAgo = Date.now() - (1000 * 60 * 60 * 2);
-		return new Date(lastAgreement) < twoHoursAgo;
+		return new Date(cookieMap[AGREEMENT_KEY]) < twoHoursAgo;
 
 	} catch (err) {
 		console.error(err);
@@ -18,7 +24,13 @@ const getIsOpen = () => {
 	}
 };
 
-const setAgreementTime = () => localStorage.setItem(AGREEMENT_KEY, (new Date()).toString());
+const setAgreementTime = () => {
+	// localStorage.setItem(AGREEMENT_KEY, (new Date()).toString());
+	const futureDate = new Date();
+	futureDate.setUTCDate(futureDate.getUTCDate() + 2);
+	console.log(futureDate.toString())
+	document.cookie = `${AGREEMENT_KEY}=${(new Date()).toString()};domain=${Config.COOKIE_DOMAIN};expires=${futureDate.toString()}`
+};
 
 const ConsentAgreement = ({ navigateTo = 'navigate to the Advana App-wide Agreements on the About page' }) => {
 
