@@ -91,7 +91,7 @@ const AdvanaMegaMenuPill = (props) => {
 		closeHeight,
 		closeWidth,
 		defaultHeader,
-		location
+		location = {}
 	} = props;
 	const { trackEvent } = useMatomo();
 	const [menuOpen, setMenuOpen] = useState(false);
@@ -105,7 +105,7 @@ const AdvanaMegaMenuPill = (props) => {
 			<PillButton margin={margin} width={width} padding={padding} onClick={toggleMenu} menuOpen={menuOpen}>
 				<MenuIcon fontSize="large" style={{ color: menuOpen ? Config.MEGA_MENU_HIGHLIGHT_COLOR : 'white' }} />
 				<TitleText>{Config.MEGA_MENU_PILL_TEXT}</TitleText>
-				{!location['pathname'].includes('search') &&
+				{!location['pathname']?.includes('search') &&
 					<SearchButton onClick={() => {
 						trackEvent({
 							category: 'AdvanaMegaMenu_AdvanaMegaMenuPill',
