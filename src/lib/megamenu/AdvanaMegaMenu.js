@@ -152,11 +152,13 @@ const AdvanaMegaMenu = (props) => {
 		pillMenu,
 		defaultHeader,
 		homePage,
-		permissions = Permissions
+		permissions = Permissions,
+    defaultMenuOpen,
+    toggleMenu
 	} = props;
 	const { trackEvent } = useMatomo();
 	const [currentHeader, setCurrentHeader] = useState(null);
-	const [menuOpen, setMenuOpen] = useState(false);
+	const [menuOpen, setMenuOpen] = useState(defaultMenuOpen);
 	const [atTop, setAtTop] = useState(homePage);
 	const [menuDataWithPermissions, setMenuDataWithPermissions] = useState({});
 
@@ -196,6 +198,7 @@ const AdvanaMegaMenu = (props) => {
 	const closeMegamenu = (e) => {
 		if (e) e.preventDefault();
 		setMenuOpen(false);
+    if (toggleMenu) toggleMenu();
 		setCurrentHeader(null);
 	}
 
@@ -262,11 +265,8 @@ const AdvanaMegaMenu = (props) => {
 					window.open(Config.MEGA_MENU_SEARCH_LINK, openInNewTab ? '_blank' : '_self');
 				}}>
 				<i className="fa fa-search"></i>
-			</HeaderButton>)
-		}
-
-		buttons.push(
-			<HeaderButton
+			</HeaderButton>);
+		buttons.push(<HeaderButton
 				key={'header-profile'}
 				value={'profile'}
 				currentvalue={null}
@@ -282,15 +282,14 @@ const AdvanaMegaMenu = (props) => {
 				}}
 				aria-label="go to user profile">
 				<i className="fa fa-user" />
-			</HeaderButton>
-		)
-
+			</HeaderButton>);
+		}
 		return buttons;
 	}
 
-	const redirect = (link) => {
+	const redirect = (link, newTab) => {
 		closeMegamenu();
-		changePage(link);
+		changePage(link, newTab);
 	}
 
 	return (

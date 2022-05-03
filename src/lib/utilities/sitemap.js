@@ -53,15 +53,15 @@ export function useUpdateMenuDataWithPermissions(permissionsClass) {
 	return updateMenuDataWithPermissionsCb;
 }
 
-export function changePage(link) {
+export function changePage(link, newTab = false) {
 	if (link[0] === '#') {
 		if (Config.MEGA_MENU_BASE_DOMAIN) {
-			window.open(Config.MEGA_MENU_BASE_DOMAIN + '/' + link);
+			window.open(Config.MEGA_MENU_BASE_DOMAIN + '/' + link, newTab ? '_blank' : '_self');
 		} else {
 			window.location.href = '/' + link;
 		}
 	} else {
-		window.open(link);
+		window.open(link, newTab ? '_blank' : '_self');
 	}
 }
 

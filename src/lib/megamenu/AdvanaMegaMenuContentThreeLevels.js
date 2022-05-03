@@ -37,7 +37,7 @@ export default function AdvanaMegaMenuContent({
 				color="primary"
 				size={'large'}
 				style={{ marginTop: 20, backgroundColor: Config.MEGA_MENU_HIGHLIGHT_COLOR }}
-				onClick={() => redirect(data?.link ?? '#')}
+				onClick={() => redirect(data?.link ?? '#', data?.newTab)}
 			>
 				View Page
 			</Button>

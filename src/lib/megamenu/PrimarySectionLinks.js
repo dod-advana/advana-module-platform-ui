@@ -45,7 +45,7 @@ const disabledColor = '#8091A5';
 
 export default function PrimarySectionLinks({ links = [], activePrimarySection, setActivePrimarySection, redirect }) {
 
-	const handleClick = (label, link, disabled) => {
+	const handleClick = (label, link, disabled, newTab = false) => {
 		return (e) => {
 			e.preventDefault();
 
@@ -53,7 +53,7 @@ export default function PrimarySectionLinks({ links = [], activePrimarySection, 
 				return;
 
 			if (link)
-				return redirect(link)
+				return redirect(link, newTab)
 
 			setActivePrimarySection(label);
 		}
@@ -67,7 +67,7 @@ export default function PrimarySectionLinks({ links = [], activePrimarySection, 
 
 		return !hideLink && <Link
 			href={href}
-			onClick={handleClick(link.label, link.link, isDisabled)}
+			onClick={handleClick(link.label, link.link, isDisabled, link.newTab)}
 			active={activePrimarySection === link.label}
 			key={'primary-link' + idx}
 			disabled={isDisabled}

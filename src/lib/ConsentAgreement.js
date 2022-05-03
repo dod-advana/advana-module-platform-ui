@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Dialog, Button, DialogTitle, DialogContent, DialogActions, Typography } from '@material-ui/core'
-import Config from "./config/config";
+import { Dialog, Button, DialogTitle, DialogContent, DialogActions, Typography } from '@material-ui/core';
+import Config from './config/config';
 
 const AGREEMENT_KEY = 'data.mil-consent-agreed';
 
@@ -28,8 +28,7 @@ const setAgreementTime = () => {
 	// localStorage.setItem(AGREEMENT_KEY, (new Date()).toString());
 	const futureDate = new Date();
 	futureDate.setUTCDate(futureDate.getUTCDate() + 2);
-	console.log(futureDate.toString())
-	document.cookie = `${AGREEMENT_KEY}=${(new Date()).toString()};domain=${Config.COOKIE_DOMAIN};expires=${futureDate.toString()}`
+	document.cookie = `${AGREEMENT_KEY}=${(new Date()).toString()};domain=${Config.COOKIE_DOMAIN};expires=${futureDate.toString()}`;
 };
 
 const ConsentAgreement = ({ navigateTo = 'navigate to the Advana App-wide Agreements on the About page' }) => {

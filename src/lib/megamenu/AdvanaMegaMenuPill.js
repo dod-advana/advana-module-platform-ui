@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import MenuIcon from '@material-ui/icons/Menu';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
-import CloseIcon from '@material-ui/icons/Close';
 import AdvanaMegaMenu from './AdvanaMegaMenu';
 import Config from '../config/config';
+import MenuIcon from '@material-ui/icons/Menu';
+import CloseIcon from '@material-ui/icons/Close';
 
 const MenuContainer = styled.div`
     width: 100vw;
@@ -90,7 +90,8 @@ const AdvanaMegaMenuPill = (props) => {
 		padding,
 		closeHeight,
 		closeWidth,
-		defaultHeader
+		defaultHeader,
+		location
 	} = props;
 	const { trackEvent } = useMatomo();
 	const [menuOpen, setMenuOpen] = useState(false);
@@ -104,16 +105,18 @@ const AdvanaMegaMenuPill = (props) => {
 			<PillButton margin={margin} width={width} padding={padding} onClick={toggleMenu} menuOpen={menuOpen}>
 				<MenuIcon fontSize="large" style={{ color: menuOpen ? Config.MEGA_MENU_HIGHLIGHT_COLOR : 'white' }} />
 				<TitleText>{Config.MEGA_MENU_PILL_TEXT}</TitleText>
-				<SearchButton onClick={() => {
-					trackEvent({
-						category: 'AdvanaMegaMenu_AdvanaMegaMenuPill',
-						action: 'click',
-						name: 'SearchIcon'
-					});
-					window.open(Config.MEGA_MENU_SEARCH_LINK, '_blank')
-				}}>
-					<i className="fa fa-search" />
-				</SearchButton>
+				{!location['pathname'].includes('search') &&
+					<SearchButton onClick={() => {
+						trackEvent({
+							category: 'AdvanaMegaMenu_AdvanaMegaMenuPill',
+							action: 'click',
+							name: 'SearchIcon'
+						});
+						window.open(Config.MEGA_MENU_SEARCH_LINK, '_self')
+					}}>
+						<i className="fa fa-search"/>
+					</SearchButton>
+				}
 
 				<UserButton onClick={() => {
 					trackEvent({
@@ -121,7 +124,7 @@ const AdvanaMegaMenuPill = (props) => {
 						action: 'click',
 						name: 'UserProfileIcon'
 					});
-					window.open(Config.MEGA_MENU_BASE_DOMAIN + '/#/profile', '_blank')
+					window.open(Config.MEGA_MENU_BASE_DOMAIN + '/#/profile', '_self')
 				}} aria-label="go to user profile">
 					<i className="fa fa-user" />
 				</UserButton>
@@ -130,7 +133,7 @@ const AdvanaMegaMenuPill = (props) => {
 				<CloseIcon fontSize="large" />
 			</CloseButton>
 			<MenuContainer className="MenuContainer" menuOpen={menuOpen}>
-				<AdvanaMegaMenu showCloseButton={false} pillMenu={true} defaultHeader={defaultHeader} />
+				<AdvanaMegaMenu showCloseButton={false} pillMenu={true} defaultHeader={defaultHeader} defaultMenuOpen={menuOpen} toggleMenu={toggleMenu} />
 			</MenuContainer>
 		</>
 	)

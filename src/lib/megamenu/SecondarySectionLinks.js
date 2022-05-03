@@ -38,7 +38,7 @@ const LinkRight = styled.div`
 const noop = () => { };
 
 export default function SecondarySectionLinks({ links = [], title = '', activeSecondarySection, setActiveSecondarySection = noop, redirect }) {
-	const handleClick = (label, disabled, link) => {
+	const handleClick = (label, disabled, link, newTab = false) => {
 		return (e) => {
 			e.preventDefault();
 			if (disabled) {
@@ -46,7 +46,7 @@ export default function SecondarySectionLinks({ links = [], title = '', activeSe
 			}
 
 			if (link)
-				return redirect(link);
+				return redirect(link, newTab);
 
 			setActiveSecondarySection(label);
 		}
@@ -67,7 +67,7 @@ export default function SecondarySectionLinks({ links = [], title = '', activeSe
 
 		return !hideLink && <Link
 			href={href}
-			onClick={handleClick(link.label, isDisabled, link.link)}
+			onClick={handleClick(link.label, isDisabled, link.link, link.newTab)}
 			disabled={isDisabled}
 			color={color}
 			key={'secondary-link' + idx}
