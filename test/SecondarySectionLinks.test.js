@@ -145,7 +145,7 @@ describe('calls right callback based on whether link is disabled or has a link o
 		userEvent.click(element);
 
 		expect(mockRedirect).toHaveBeenCalledTimes(1);
-		expect(mockRedirect).toHaveBeenLastCalledWith('#/with/link');
+		expect(mockRedirect).toHaveBeenLastCalledWith('#/with/link', false);
 		expect(mockSetActive).toHaveBeenCalledTimes(0);
 	});
 
