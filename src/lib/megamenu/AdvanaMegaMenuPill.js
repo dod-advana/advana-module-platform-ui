@@ -35,8 +35,8 @@ export const PillButton = styled.div`
     cursor: pointer;
     flex: 1;
     position: ${({ menuOpen }) => menuOpen ? 'fixed' : ''};
-    right: ${({ menuOpen }) => menuOpen ? '20px' : ''};
-    top: ${({ menuOpen }) => menuOpen ? '60px' : ''};
+    right: ${({ menuOpen, right }) => menuOpen ? right ? right : '20px' : ''};
+    top: ${({ menuOpen, top }) => menuOpen ? top ? top : '60px' : ''};
     justify-content: ${({ justifyContent }) => justifyContent ? justifyContent : 'unset'}
 `;
 
@@ -73,8 +73,8 @@ const CloseButton = styled.div`
     visibility: ${({ menuOpen }) => menuOpen ? 'visible' : 'hidden'};
     flex: .4;
     position: ${({ menuOpen }) => menuOpen ? 'fixed' : ''};
-    right: ${({ menuOpen }) => menuOpen ? '30px' : ''};
-    top: ${({ menuOpen }) => menuOpen ? '160px' : ''};
+    right: ${({ menuOpen, right }) => menuOpen ? right ? right : '30px' : ''};
+    top: ${({ menuOpen, top }) => menuOpen ? top ? top : '160px' : ''};
 `;
 
 export const TitleText = styled.span`
@@ -91,7 +91,11 @@ const AdvanaMegaMenuPill = (props) => {
 		closeHeight,
 		closeWidth,
 		defaultHeader,
-		location = {}
+		location = {},
+		openPillRight,
+		openPillTop,
+		closeButtonRight,
+		closeButtonTop
 	} = props;
 	const { trackEvent } = useMatomo();
 	const [menuOpen, setMenuOpen] = useState(false);
@@ -102,7 +106,7 @@ const AdvanaMegaMenuPill = (props) => {
 
 	return (
 		<>
-			<PillButton margin={margin} width={width} padding={padding} onClick={toggleMenu} menuOpen={menuOpen}>
+			<PillButton margin={margin} width={width} padding={padding} onClick={toggleMenu} menuOpen={menuOpen} top={openPillTop} right={openPillRight}>
 				<MenuIcon fontSize="large" style={{ color: menuOpen ? Config.MEGA_MENU_HIGHLIGHT_COLOR : 'white' }} />
 				<TitleText>{Config.MEGA_MENU_PILL_TEXT}</TitleText>
 				{!location['pathname']?.includes('search') &&
@@ -129,7 +133,7 @@ const AdvanaMegaMenuPill = (props) => {
 					<i className="fa fa-user" />
 				</UserButton>
 			</PillButton>
-			<CloseButton onClick={toggleMenu} closeHeight={closeHeight} closeWidth={closeWidth} menuOpen={menuOpen}>
+			<CloseButton onClick={toggleMenu} closeHeight={closeHeight} closeWidth={closeWidth} menuOpen={menuOpen} top={closeButtonTop} right={closeButtonRight}>
 				<CloseIcon fontSize="large" />
 			</CloseButton>
 			<MenuContainer className="MenuContainer" menuOpen={menuOpen}>
