@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
 import AdvanaMegaMenu from './AdvanaMegaMenu';
 import Config from '../config/config';
-import MenuIcon from '@material-ui/icons/Menu';
-import CloseIcon from '@material-ui/icons/Close';
+import { Menu as MenuIcon, Close as CloseIcon } from '@material-ui/icons';
 
 const MenuContainer = styled.div`
     width: 100vw;

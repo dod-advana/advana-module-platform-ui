@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import { ChevronRight as ChevronRightIcon } from '@material-ui/icons';
 import BadgeLabel from './BadgeLabel';
 import Config from '../config/config';
 import { getDisplayedHref } from '../utilities/sitemap';

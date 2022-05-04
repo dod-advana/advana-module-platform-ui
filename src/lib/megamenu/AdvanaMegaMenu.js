@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
 import styled from 'styled-components';
 import { Button } from '@material-ui/core';
-import CloseIcon from '@material-ui/icons/Close'
+import { Close as CloseIcon } from '@material-ui/icons'
 import AdvanaMegaMenuContent from './AdvanaMegaMenuContent';
 import { changePage, getDynamicHeaderButtons, getLinks, useUpdateMenuDataWithPermissions } from '../utilities/sitemap';
 import Config from '../config/config';
