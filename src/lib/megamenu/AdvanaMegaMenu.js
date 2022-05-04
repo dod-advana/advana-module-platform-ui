@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
 import styled from 'styled-components';
 import { Button } from '@material-ui/core';
-import { Close as CloseIcon } from '@material-ui/icons'
+import { Close } from '@material-ui/icons'
 import AdvanaMegaMenuContent from './AdvanaMegaMenuContent';
 import { changePage, getDynamicHeaderButtons, getLinks, useUpdateMenuDataWithPermissions } from '../utilities/sitemap';
 import Config from '../config/config';
@@ -312,7 +312,7 @@ const AdvanaMegaMenu = (props) => {
 						<MenuBodyContent>
 							{showCloseButton && menuOpen &&
 								<CloseMenuButton onClick={closeMegamenu} closeHeight={null} closeWidth={null} homePage={homePage} menuOpen={menuOpen} data-testid="close">
-									<CloseIcon fontSize="large" />
+									<Close fontSize="large" />
 								</CloseMenuButton>
 							}
 							{currentHeader &&
