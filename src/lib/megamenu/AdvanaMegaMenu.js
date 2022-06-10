@@ -261,8 +261,7 @@ const AdvanaMegaMenu = (props) => {
 						name: 'SearchIcon'
 					});
 
-					const openInNewTab = Config.MEGA_MENU_SEARCH_LINK?.[1] !== '#';
-					window.open(Config.MEGA_MENU_SEARCH_LINK, openInNewTab ? '_blank' : '_self');
+					window.open(Config.MEGA_MENU_SEARCH_LINK, '_self');
 				}}>
 				<i className="fa fa-search"></i>
 			</HeaderButton>);
