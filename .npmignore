@@ -4,9 +4,12 @@
 .pnp.js
 
 # testing
-/coverage
+test/coverage
+test/reports
+/.scannerwork
 
 # production
+/build
 /.github
 
 # misc

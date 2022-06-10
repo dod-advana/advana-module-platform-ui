@@ -109,7 +109,8 @@ const AdvanaMegaMenuPill = (props) => {
 				<MenuIcon fontSize="large" style={{ color: menuOpen ? Config.MEGA_MENU_HIGHLIGHT_COLOR : 'white' }} />
 				<TitleText>{Config.MEGA_MENU_PILL_TEXT}</TitleText>
 				{!location['pathname']?.includes('search') &&
-					<SearchButton onClick={() => {
+					<SearchButton onClick={(e) => {
+						e.stopPropagation();
 						trackEvent({
 							category: 'AdvanaMegaMenu_AdvanaMegaMenuPill',
 							action: 'click',
@@ -121,7 +122,8 @@ const AdvanaMegaMenuPill = (props) => {
 					</SearchButton>
 				}
 
-				<UserButton onClick={() => {
+				<UserButton onClick={(e) => {
+					e.stopPropagation();
 					trackEvent({
 						category: 'AdvanaMegaMenu_AdvanaMegaMenuPill',
 						action: 'click',
