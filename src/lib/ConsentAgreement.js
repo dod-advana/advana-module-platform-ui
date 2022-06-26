@@ -25,7 +25,6 @@ const getIsOpen = () => {
 };
 
 const setAgreementTime = () => {
-	// localStorage.setItem(AGREEMENT_KEY, (new Date()).toString());
 	const futureDate = new Date();
 	futureDate.setUTCDate(futureDate.getUTCDate() + 2);
 	document.cookie = `${AGREEMENT_KEY}=${(new Date()).toString()};domain=${Config.COOKIE_DOMAIN};expires=${futureDate.toString()}`;
@@ -35,13 +34,13 @@ const ConsentAgreement = ({ navigateTo = 'navigate to the Advana App-wide Agreem
 
 	const [isOpen, setIsOpen] = useState(getIsOpen());
 
-
 	return (
 		<Dialog
 			open={isOpen}
 			maxWidth="md"
 			disableBackdropClick={true}
 			disableEscapeKeyDown={true}
+			data-cy={'consent-agreement'}
 		>
 			<DialogTitle disableTypography>
 				<Typography varient="h3">DoD Notice and Consent Banner</Typography>
@@ -65,6 +64,7 @@ const ConsentAgreement = ({ navigateTo = 'navigate to the Advana App-wide Agreem
 					variant="contained"
 					color="primary"
 					size="small"
+					data-cy={'consent-agreement-okay'}
 				>
 					OK
 				</Button>
