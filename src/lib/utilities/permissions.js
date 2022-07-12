@@ -178,7 +178,11 @@ export default class permissions {
 	}
 
 	static allowFSD() {
-		return this.permissionValidator(Config.PERMISSIONS.VIEW_FSD);
+		return this.permissionValidator(Config.PERMISSIONS.FSD_ADMIN) ||
+		this.permissionValidator(Config.PERMISSIONS.FSD_VO) ||
+		this.permissionValidator(Config.PERMISSIONS.FSD_PREP) ||
+		this.permissionValidator(Config.PERMISSIONS.FSD_DFAS_A) ||
+		this.permissionValidator(Config.PERMISSIONS.FSD_ENT_A);
 	}
 
 	static allowDataportal() {

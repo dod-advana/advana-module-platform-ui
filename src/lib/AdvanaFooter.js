@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Button, Modal } from '@material-ui/core';
 import { changePage, getDynamicHeaderButtons, useMegaMenuLinks } from "./utilities/sitemap";
+import CDAOLogo from './images/logos/cdao_logo.png';
+import AdvanaLogo from './images/logos/Advana_Approved.png';
 
 const FooterContainer = styled.div`
 	display: flex;
@@ -48,6 +50,14 @@ const ButtonRow = styled.div`
 	margin: 10px 0 0 0;
 `;
 
+const LogosSection = styled.div`
+	display: flex;
+	
+	img {
+		width: 140px;
+	}
+`;
+
 export default ({extraLinks}) => {
 	let links = useMegaMenuLinks();
 	const headerButtons = getDynamicHeaderButtons(links);
@@ -60,6 +70,15 @@ export default ({extraLinks}) => {
 
 	return(
 		<FooterContainer>
+			<LogosSection>
+				<img
+					src={CDAOLogo}
+					style={{ marginLeft: 32, marginRight: 20 }}
+					alt="cdao-logo"
+					id={'cdaoLogo'}
+				/>
+				<img src={AdvanaLogo} alt="advana-logo" id={'advanaLogo'} />
+			</LogosSection>
 			<LinkContainer>
 				{links}
 				{extraLinks}

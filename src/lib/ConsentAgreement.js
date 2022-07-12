@@ -1,8 +1,16 @@
 import React, { useState } from 'react';
-import { Dialog, Button, DialogTitle, DialogContent, DialogActions, Typography } from '@material-ui/core';
+import { Dialog, Button, DialogTitle, DialogContent, DialogActions, Typography} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import Config from './config/config';
 
 const AGREEMENT_KEY = 'data.mil-consent-agreed';
+
+const useStyles = makeStyles({
+    container: {
+      marginTop: '2em', // adjusting for classification banner
+      paddingTop: ({ offset }) => offset ?? offset, // adjust for additional banners
+    },
+});
 
 const getIsOpen = () => {
 	const cookieMap = {};
@@ -30,7 +38,9 @@ const setAgreementTime = () => {
 	document.cookie = `${AGREEMENT_KEY}=${(new Date()).toString()};domain=${Config.COOKIE_DOMAIN};expires=${futureDate.toString()}`;
 };
 
-const ConsentAgreement = ({ navigateTo = 'navigate to the Advana App-wide Agreements on the About page' }) => {
+const ConsentAgreement = ({ offset, navigateTo = 'navigate to the Advana App-wide Agreements on the About page' }) => {
+
+    const classes = useStyles({ offset: offset });
 
 	const [isOpen, setIsOpen] = useState(getIsOpen());
 
@@ -40,6 +50,7 @@ const ConsentAgreement = ({ navigateTo = 'navigate to the Advana App-wide Agreem
 			maxWidth="md"
 			disableBackdropClick={true}
 			disableEscapeKeyDown={true}
+			className={classes.container}
 			data-cy={'consent-agreement'}
 		>
 			<DialogTitle disableTypography>
