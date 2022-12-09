@@ -18,6 +18,7 @@ test/reports
 .env.development.local
 .env.test.local
 .env.production.local
+/.idea
 
 npm-debug.log*
 yarn-debug.log*

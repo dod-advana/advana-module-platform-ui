@@ -3,7 +3,14 @@ import styled from 'styled-components';
 import { Button, Modal } from '@material-ui/core';
 import { changePage, getDynamicHeaderButtons, useMegaMenuLinks } from "./utilities/sitemap";
 import CDAOLogo from './images/logos/cdao_logo.png';
-import AdvanaLogo from './images/logos/Advana_Approved.png';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+	disclaimerModalContainer: {
+		marginTop: '2em', // adjusting for classification banner
+		paddingTop: ({ offset }) => offset ?? offset, // adjust for additional banners
+	},
+});
 
 const FooterContainer = styled.div`
 	display: flex;
@@ -42,6 +49,8 @@ const DisclaimerModal = styled.div`
 	padding: 20px;
 	border-radius: 5px;
 	margin: 5% auto;
+	height: 71%; 
+	overflow: scroll;
 `;
 
 const ButtonRow = styled.div`
@@ -51,14 +60,16 @@ const ButtonRow = styled.div`
 `;
 
 const LogosSection = styled.div`
+	padding-left: 50px;
 	display: flex;
-	
+
 	img {
 		width: 140px;
 	}
 `;
 
-export default ({extraLinks}) => {
+const AdvanaFooter = ({ extraLinks, offset }) => {
+	const classes = useStyles({ offset: offset });
 	let links = useMegaMenuLinks();
 	const headerButtons = getDynamicHeaderButtons(links);
 
@@ -68,8 +79,8 @@ export default ({extraLinks}) => {
 
 	const [disclaimerModalOpen, setDisclaimerModalOpen] = useState(false);
 
-	return(
-		<FooterContainer>
+	return (
+		<FooterContainer data-test-id="footer">
 			<LogosSection>
 				<img
 					src={CDAOLogo}
@@ -77,7 +88,6 @@ export default ({extraLinks}) => {
 					alt="cdao-logo"
 					id={'cdaoLogo'}
 				/>
-				<img src={AdvanaLogo} alt="advana-logo" id={'advanaLogo'} />
 			</LogosSection>
 			<LinkContainer>
 				{links}
@@ -88,6 +98,7 @@ export default ({extraLinks}) => {
 			<Modal
 				open={disclaimerModalOpen}
 				onClose={() => setDisclaimerModalOpen(false)}
+				className={classes.disclaimerModalContainer}
 			>
 				<DisclaimerModal>
 					<div>
@@ -108,3 +119,5 @@ export default ({extraLinks}) => {
 		</FooterContainer>
 	);
 }
+
+export default AdvanaFooter;

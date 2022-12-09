@@ -21,6 +21,8 @@ test/reports
 .env.test.local
 .env.production.local
 /.idea
+cypress/reports
+cypress/screenshots/
 
 npm-debug.log*
 yarn-debug.log*

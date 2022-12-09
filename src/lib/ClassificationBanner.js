@@ -14,7 +14,7 @@ const styles = {
 		zIndex: '16777271'
 	},
 	div: {
-		color: 'white',
+		color: window?.__env__?.REACT_APP_CLASSIFICATION_BANNER_TEXT_COLOR || process.env.REACT_APP_CLASSIFICATION_BANNER_TEXT_COLOR || 'white',
 		textAlign: 'center',
 		zIndex: '16777271'
 	}

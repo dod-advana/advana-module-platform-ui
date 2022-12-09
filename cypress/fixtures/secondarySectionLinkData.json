@@ -1,0 +1,62 @@
+{
+    "linkData": [
+        {
+            "label": "with chip",
+            "link": "#/landing/analytics/covid19",
+            "chip": "mmmm",
+            "description": null,
+            "newTab": false,
+            "permission": true,
+            "link_identifier": null,
+            "notAvailable": false
+        },
+        {
+            "label": "no permission",
+            "link": "https://covid-status.data.mil/#/",
+            "chip": "kk",
+            "description": null,
+            "newTab": true,
+            "permission": false,
+            "link_identifier": null,
+            "notAvailable": false
+        },
+        {
+            "label": "not available",
+            "link": "https://qlik.advana.data.mil/sense/app/22935916-ee66-4bfc-afe8-b4f1bda5880d",
+            "chip": null,
+            "description": null,
+            "newTab": true,
+            "permission": true,
+            "link_identifier": null,
+            "notAvailable": true
+        },
+        {
+            "label": "with link",
+            "link": "#/with/link",
+            "description": null,
+            "newTab": false,
+            "permission": true,
+            "link_identifier": null,
+            "notAvailable": false
+        },
+        {
+            "label": "without link",
+            "link": null,
+            "description": null,
+            "newTab": false,
+            "permission": true,
+            "link_identifier": null,
+            "notAvailable": false
+        },
+        {
+            "label": "hidden",
+            "link": null,
+            "description": null,
+            "newTab": false,
+            "permission": false,
+            "link_identifier": null,
+            "notAvailable": false,
+            "hideWithoutPermission": true
+        }
+    ]
+}

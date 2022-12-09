@@ -13,7 +13,7 @@ const NotFoundPage = () => {
 	}, []);
 
 	return (
-		<div style={{ height: '100%' }}>
+		<div style={{ marginTop: '140px', height: '100%', paddingTop: '20px' }} data-test-id="not-found-page">
 			{show &&
 				<div style={styles.container}>
 					<div><img style={styles.magnifyIcon} src={MagnifyIcon} alt="Magnifying glass" /></div>

@@ -1,4 +1,3 @@
-import _ from 'underscore';
 import Config from '../permissionDefinitions';
 import Auth from './Auth';
 

@@ -2,7 +2,7 @@ import React from 'react';
 
 const GenericErrorPage = () => {
 	return [
-		<div style={{ height: 'calc(100% - 220px)' }}>
+		<div style={{ marginTop: '140px', height: '100%', paddingTop: '20px' }} data-test-id="error-page">
 			<div style={styles.container} key='content'>
 				<div style={styles.errorIcon}><i className="fa fa-times-circle"></i></div>
 				<div style={styles.subhead}>An error has occurred.</div>
@@ -21,7 +21,7 @@ const styles = {
 		fontFamily: 'Roboto',
 		textAlign: 'center',
 		margin: '50px auto',
-		padding: '45px 0'
+		padding: '45px 0',
 	},
 	link: {
 		color: '#00838F'

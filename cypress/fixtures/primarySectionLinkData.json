@@ -1,0 +1,44 @@
+{
+    "linkData": [
+        { "label": "with link", "link": "#/landing/initiatives" },
+        { "label": "without link", "link": null },
+        { "label": "not available", "link": "#/landing", "notAvailable": true },
+        { "label": "with chip", "link": "#/landing/initiatives", "chip": "bbb" },
+        {
+            "label": "with multiple links",
+            "links": [
+                {
+                    "label": "COVID-19 Response Overview",
+                    "link": "#/landing/analytics/covid19",
+                    "chip": null,
+                    "description": null,
+                    "newTab": false,
+                    "permission": true,
+                    "link_identifier": null,
+                    "notAvailable": false
+                },
+                {
+                    "label": "DoD COVID-19 Response and Operations Platform",
+                    "link": "https://covid-status.data.mil/#/",
+                    "chip": null,
+                    "description": null,
+                    "newTab": true,
+                    "permission": true,
+                    "link_identifier": null,
+                    "notAvailable": false
+                },
+                {
+                    "label": "COVID-19 Analytics",
+                    "link": "https://qlik.advana.data.mil/sense/app/22935916-ee66-4bfc-afe8-b4f1bda5880d",
+                    "chip": null,
+                    "description": null,
+                    "newTab": true,
+                    "permission": true,
+                    "link_identifier": null,
+                    "notAvailable": false
+                }
+            ]
+        },
+        { "label": "hidden", "link": "#/landing/initiatives", "hideWithoutPermission": true }
+    ]
+}

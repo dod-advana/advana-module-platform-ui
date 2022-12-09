@@ -26,7 +26,7 @@ const styles = {
 	}
 };
 
-const ToolPageTitle = ({ logo, alt, beta, unread, extraPillClass = '' }) => {
+const ToolPageTitle = ({ logo, alt, beta, unread, extraPillClass = '', showProfileLink = true }) => {
 	return (
 		<div style={styles.pageTitleRow}>
 			<div style={{ display: 'inline-flex' }}>
@@ -34,7 +34,8 @@ const ToolPageTitle = ({ logo, alt, beta, unread, extraPillClass = '' }) => {
 				{beta && <div style={styles.beta}>Beta</div>}
 			</div>
 			<div style={{ paddingTop: 10 }} className={extraPillClass}>
-				<AdvanaMegaMenuPill unread={unread} defaultHeader={Config.MEGA_MENU_PILL_DEFAULT_HEADER} margin={'auto 0px'} />
+				<AdvanaMegaMenuPill unread={unread} defaultHeader={Config.MEGA_MENU_PILL_DEFAULT_HEADER} margin={'auto 0px'} showProfileLink={showProfileLink}
+				/>
 			</div>
 		</div>
 

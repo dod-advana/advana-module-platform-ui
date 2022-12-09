@@ -1,0 +1,75 @@
+{ "testLinks": {
+	"Analytics": {
+		"title": "ANALYTICS",
+		"description": "Outer section description",
+		"link": "#/landing/analytics",
+		"links": [
+			{
+				"label": "A",
+				"link": "#/landing/analytics",
+				"chip": null,
+				"description": "landing analytics overview page",
+				"newTab": false,
+				"permission": null,
+				"link_identifier": null,
+				"notAvailable": false
+			},
+			{
+				"label": "B",
+				"links": [
+					{
+						"label": "B1",
+						"link": "#/landing/analytics/acquisition",
+						"chip": null,
+						"description": null,
+						"newTab": false,
+						"permission": null,
+						"link_identifier": null,
+						"notAvailable": false
+					}
+				]
+			},
+			{
+				"label": "C",
+				"links": [
+					{
+						"label": "C1",
+						"link": "#",
+						"chip": null,
+						"description": null,
+						"newTab": false,
+						"permission": null,
+						"link_identifier": null,
+						"notAvailable": true
+					},
+					{
+						"label": "C2",
+						"links": [
+							{
+								"label": "C2a",
+								"link": "#/landing/analytics/covid19",
+								"chip": null,
+								"description": null,
+								"newTab": false,
+								"permission": null,
+								"link_identifier": null,
+								"notAvailable": false
+							},
+							{
+								"label": "C2b",
+								"link": "https://qlik.advana.data.mil/sense/app/22935916-ee66-4bfc-afe8-b4f1bda5880d",
+								"chip": null,
+								"description": null,
+								"newTab": true,
+								"permission": null,
+								"link_identifier": null,
+								"notAvailable": false
+							}
+						],
+						"permission": null
+					}
+				]
+			}
+		]
+	}
+}}

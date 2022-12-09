@@ -1,0 +1,8 @@
+{
+    "banners": [
+        {"display": "No", "app_space": "Advana", "id": "123", "color": "Purple", "description": "this is a banner description"},
+        {"display": "Yes", "app_space": "Advana", "id": "124", "color": "Purple", "description": "this is another banner description", "link": "/"},
+        {"display": "Yes", "app_space": "All", "id": "125", "color": "Orange", "description": "all banner description", "link": null},
+        {"display": "Yes", "app_space": "Blade", "id": "126", "color": "Blue", "description": "this is a banner description"}
+    ]
+}

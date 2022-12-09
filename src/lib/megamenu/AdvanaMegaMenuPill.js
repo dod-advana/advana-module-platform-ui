@@ -100,6 +100,13 @@ const AdvanaMegaMenuPill = (props) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
+
+    trackEvent({
+      category: "AdvanaMegaMenu_AdvanaMegaMenuPill",
+      action: 'click',
+      name: menuOpen ? 'MegaMenu Closed' : 'MegaMenu Opened'
+    });
+
     setMenuOpen(!menuOpen);
   }
 

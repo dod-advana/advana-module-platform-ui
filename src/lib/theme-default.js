@@ -14,21 +14,21 @@ const themeDefault = createMuiTheme({
 		useNextVariants: true,
 		h1: {
 			fontFamily: 'Montserrat',
-			fontWeight: "300",
-			fontSize: 48,
+			fontWeight: "bold",
+			fontSize: 50,
 			letterSpacing: 0,
-			lineHeight: "58px"
+			lineHeight: "62px"
 		},
 		h2: {
 			fontFamily: 'Montserrat',
-			fontWeight: "bold",
+			fontWeight: 300, // light
 			fontSize: 38,
 			letterSpacing: 0,
 			lineHeight: "48px"
 		},
 		h3: {
 			fontFamily: 'Montserrat',
-			fontWeight: "bold",
+			fontWeight: 300, // light
 			fontSize: 24,
 			letterSpacing: 0,
 			lineHeight: "30px"
@@ -36,24 +36,25 @@ const themeDefault = createMuiTheme({
 		h4: {
 			fontFamily: 'Noto Sans',
 			fontWeight: "bold",
-			fontSize: 18,
+			fontSize: 20,
 			letterSpacing: "4.46px",
-			lineHeight: "24px"
+			lineHeight: "28px"
 		},
 		h5: {
 			fontFamily: 'Montserrat',
-			fontWeight: "bold",
+			fontWeight: "normal",
 			fontSize: 16,
 			lineHeight: "20px"
 		},
 		h6: {
-			fontFamily: 'Montserrat',
-			fontWeight: "bold",
+			fontFamily: 'Noto Sans',
+			fontWeight: 500, // medium
 			fontSize: 12,
-			lineHeight: "16px"
+			lineHeight: "18px"
 		},
 		body1: {
 			fontFamily: 'Noto Sans',
+            fontWeight: 'normal',
 			fontSize: 20,
 			letterSpacing: 0,
 			lineHeight: "28px",
@@ -61,20 +62,23 @@ const themeDefault = createMuiTheme({
 		},
 		body2: {
 			fontFamily: 'Noto Sans',
+            fontWeight: 'normal',
 			fontSize: 16,
 			letterSpacing: 0,
-			lineHeight: "24px"
+			lineHeight: "22px"
 		},
 		button: {
-			fontSize: 16,
+			fontSize: 14,
 			fontFamily: 'Montserrat',
-			fontWeight: "bold",
+			fontWeight: 500, // medium
 		}
 	},
 	overrides: {
 		MuiTab: {
 			root: {
 				color: '#8091A5',
+                fontFamily: 'Noto Sans',
+                fontWeight: 'normal',
 				fontSize: '14px',
 				borderLeft: '1px solid #DFE9F4',
 				borderRight: '1px solid #DFE9F4',
@@ -131,17 +135,17 @@ const themeDefault = createMuiTheme({
 		},
 		MuiTooltip: {
 			tooltip: {
-				fontSize: '14px',
-				backgroundColor: 'rgb(40,40,40)'
+				fontSize: '12px',
+				backgroundColor: '#616161'
 			},
 			arrow: {
-				color: 'rgb(40,40,40)'
+				color: '#616161'
 			}
 		},
 		MuiTable: {
-			root: {
+            root: {
 				'& th': {
-					backgroundColor: 'white',
+                    backgroundColor: 'white',
 					borderRight: '1px solid rgba(224, 224, 224, 1)',
 					borderTop: '1px solid rgba(224, 224, 224, 1)',
 					padding: 5,
@@ -156,10 +160,10 @@ const themeDefault = createMuiTheme({
 				},
 				'& tr:nth-child(even)': {
 					backgroundColor: 'white',
-				},
+                },
 				'& td': {
 					overflow: 'hidden',
-					textOverflow: 'ellipsis',
+                    textOverflow: 'ellipsis',
 					whiteSpace: 'nowrap',
 					minWidth: 200,
 					maxWidth: 200,

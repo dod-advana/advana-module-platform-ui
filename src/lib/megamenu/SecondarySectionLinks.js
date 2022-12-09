@@ -66,6 +66,7 @@ export default function SecondarySectionLinks({ links = [], title = '', activeSe
 		const href = getDisplayedHref(link.link);
 
 		return !hideLink && <Link
+			data-test-id="secondary-link"
 			href={href}
 			onClick={handleClick(link.label, isDisabled, link.link, link.newTab)}
 			disabled={isDisabled}

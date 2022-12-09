@@ -14,8 +14,7 @@ import Permissions from '../utilities/permissions';
 // advana images
 import AdvanaDark from '../images/AdvanaDarkTheme.png';
 import DoDLogo from '../images/DOD_color.png';
-import CDTOLogo from '../images/CDTO_logo.png';
-import ODCFOLogo from '../images/ODCFO_logo.png';
+import CDAOLogo from '../images/cdaoLogo.png'
 
 // jupiter images
 import NavyDepartmentLogo from '../images/Jupiter_DON_logo.png';
@@ -24,7 +23,11 @@ import NavyLogo from '../images/Jupiter_USN_logo.png';
 import JupiterLogo from '../images/Jupiter_logo.png';
 
 const MenuContainer = styled.div`
-  height: ${({ menuOpen, pillMenu }) => (menuOpen || pillMenu) ? '100%' : '100px'};
+  height: ${({ menuOpen, pillMenu, customHeight }) => {
+    if(menuOpen || pillMenu)return('100%');
+    if(customHeight)return(customHeight);
+    return('100px');
+  }};
   padding: ${({ homePage }) => homePage ? '2em 0 0 0' : '0'};
   color: white;
   position: ${({ pillMenu }) => pillMenu ? 'absolute' : 'fixed'};
@@ -123,7 +126,7 @@ const HeaderButton = styled(Button)`
 const MenuBody = styled.div`
   display: flex;
   flex-direction: column;
-  padding: ${({ pillMenu, menuOpen }) => (pillMenu || menuOpen) ? '0 60px 70px 30px' : '0'};
+  padding: ${({ pillMenu, menuOpen, offset }) => (pillMenu || menuOpen) ?  offset ? '0 60px 170px 30px' : '0 60px 70px 30px' : '0'};
   height: ${({ pillMenu, menuOpen }) => (pillMenu || menuOpen) ? '100%' : '0%'};
   overflow: ${({ menuOpen }) => menuOpen ? 'visible' : 'hidden'};
   background-color: ${({ pillMenu }) => pillMenu ? 'transparent' : 'rgba(19,30,67,0.95)'};
@@ -157,6 +160,9 @@ const AdvanaMegaMenu = (props) => {
     defaultMenuOpen,
     toggleMenu,
     unread,
+    extraHomeTutorialClassName = '',
+    alternateLogo,
+    customHeight
   } = props;
   const { trackEvent } = useMatomo();
   const [currentHeader, setCurrentHeader] = useState(null);
@@ -169,7 +175,7 @@ const AdvanaMegaMenu = (props) => {
   // Recursive function to walk through the nested megamenu config and dynamically populate the permissions, where applicable
   const updateMenuDataWithPermissions = useUpdateMenuDataWithPermissions(permissions);
 
-  const scrollHandler = useCallback(() => {setAtTop(window.scrollY === 0);}, [])
+  const scrollHandler = useCallback(() => { setAtTop(window.scrollY === 0); }, [])
 
   useEffect(() => {
     (async () => {
@@ -228,9 +234,11 @@ const AdvanaMegaMenu = (props) => {
       default:
         return <>
           <Logo src={DoDLogo} alt='dod_logo' />
-          <Logo src={ODCFOLogo} alt='odcfo_logo' style={{ width: 57 }} />
-          <Logo src={CDTOLogo} alt='cdto_logo' />
-          <AdvanaLogo src={AdvanaDark} alt='advana_logo' onClick={() => redirect('#/')} />
+          <Logo src={CDAOLogo} alt='cdao_logo' style={{ position: 'relative', left: '1%' }} />
+          {
+            alternateLogo ? <Logo src={alternateLogo} alt='alternate_logo' style={{ position: 'relative', left: '1%' }} /> :
+              <AdvanaLogo src={AdvanaDark} alt='advana_logo' onClick={() => redirect('#/')} />
+          }
         </>;
     }
   }
@@ -270,15 +278,14 @@ const AdvanaMegaMenu = (props) => {
         }}>
         <i className="fa fa-search"></i>
       </HeaderButton>);
-      buttons.push(<HeaderButton
-        key={'header-profile'}
+      buttons.push(<div className={extraHomeTutorialClassName} key={'header-profile'} ><HeaderButton
         value={'profile'}
         currentvalue={null}
         size="small"
         style={{ fontSize: '22px', marginLeft: -15 }}
         onClick={() => {
           trackEvent({
-            category: 'AdvanaMegaMenu_AdvanaMegaMenuPill',
+            category: 'AdvanaMegaMenu_AdvanaMegaMenu',
             action: 'click',
             name: 'UserProfileIcon'
           });
@@ -286,13 +293,13 @@ const AdvanaMegaMenu = (props) => {
         }}
         aria-label="go to user profile">
         {unread && unread > 0 ? (
-            <Badge badgeContent={unread} color="error" overlap="rectangle">
-              <i className="fa fa-user" />
-            </Badge>
-          ) : (
+          <Badge badgeContent={unread} color="error" overlap="rectangle">
             <i className="fa fa-user" />
-          )}
-      </HeaderButton>);
+          </Badge>
+        ) : (
+          <i className="fa fa-user" />
+        )}
+      </HeaderButton></div>);
     }
     return buttons;
   }
@@ -304,30 +311,29 @@ const AdvanaMegaMenu = (props) => {
 
   return (
     <>
-
-      <MenuContainer menuOpen={menuOpen} pillMenu={pillMenu} homePage={homePage} location={history?.location.pathname} offset={offset}>
+      <MenuContainer menuOpen={menuOpen} pillMenu={pillMenu} homePage={homePage} location={history?.location.pathname} offset={offset} customHeight={customHeight} data-test-id="megamenu">
         <NavBar menuOpen={menuOpen} homePageTop={atTop} homePage={homePage} pillMenu={pillMenu}>
           <NavBarInner pillMenu={pillMenu}>
             <LogoContainer>
               {renderLogos()}
             </LogoContainer>
-            <HeaderButtonContainer pillMenu={pillMenu}>
+            <HeaderButtonContainer pillMenu={pillMenu} data-test-id="megamenu-header-buttons">
               {renderHeaderButtons()}
             </HeaderButtonContainer>
           </NavBarInner>
         </NavBar>
 
-        <MenuBody pillMenu={pillMenu} menuOpen={menuOpen}>
+        <MenuBody pillMenu={pillMenu} menuOpen={menuOpen} offset={offset}>
           <MenuBodyInner>
             <MenuBodyContent>
               {showCloseButton && menuOpen &&
-                <CloseMenuButton onClick={closeMegamenu} closeHeight={null} closeWidth={null} homePage={homePage} menuOpen={menuOpen} data-testid="close">
+                <CloseMenuButton onClick={closeMegamenu} closeHeight={null} closeWidth={null} homePage={homePage} menuOpen={menuOpen} data-test-id="megamenu-close">
                   <Close fontSize="large" />
                 </CloseMenuButton>
               }
               {currentHeader &&
                 <>
-                  <MenuContent>
+                  <MenuContent data-test-id="megamenu-content">
                     <AdvanaMegaMenuContent data={menuDataWithPermissions[currentHeader]} header={currentHeader} redirect={redirect} />
                   </MenuContent>
                 </>

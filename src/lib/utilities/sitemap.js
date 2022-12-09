@@ -15,7 +15,7 @@ export async function getLinks() {
 		}
 
 		if (!data) {
-			const response = await axios.get(window?.__env__?.REACT_APP_MEGA_MENU_ENDPOINT || process.env.REACT_APP_MEGA_MENU_ENDPOINT, { withCredentials: true });
+			const response = await axios.get(Config.MEGA_MENU_ENDPOINT, { withCredentials: true });
 			data = response?.data;
 			sessionStorage.setItem('advana-mega-menu', JSON.stringify(data));
 		}
@@ -49,7 +49,7 @@ export function updateMenuDataWithPermissions(obj, permissionsClass) {
 export function useUpdateMenuDataWithPermissions(permissionsClass) {
 	const updateMenuDataWithPermissionsCb = useCallback((obj) => {
 		updateMenuDataWithPermissions(obj, permissionsClass);
-	}, []);
+	}, [permissionsClass]);
 	return updateMenuDataWithPermissionsCb;
 }
 
@@ -96,11 +96,13 @@ export function useMegaMenuLinks(permissionsClass = permissions) {
 
 export function getDynamicHeaderButtons(menuDataWithPermissions = []) {
 	const sortOrder = Config.MEGA_MENU_HEADER_SORT_ORDER.split(',').map(s => s.trim());
-	return Object.keys(menuDataWithPermissions)
+	const buttons = Object.keys(menuDataWithPermissions)
 		.sort((a, b) => sortOrder.indexOf(a) - sortOrder.indexOf(b))
 		.map((key) => ({
 			value: key,
 			label: key.toUpperCase(),
 			link: menuDataWithPermissions[key].link,
 		}));
+
+	return buttons;
 };

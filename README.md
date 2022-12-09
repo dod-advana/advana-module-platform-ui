@@ -17,6 +17,12 @@ This project contains shared platform UI components of Advana.
 * REACT_APP_PROFILE_LINK: this should be set to https://advana.data.mil/#/profile if your MEGA_MENU_BASE_DOMAIN is not set to https://advana.data.mil
 * REACT_APP_COOKIE_DOMAIN: advana.data.mil (Used to store the consent banner in a cookie that is used for all subdomains)
 
+### Next JS component env vars:
+
+* NEXT_PUBLIC_CLASSIFICATION_BANNER_COLOR: background string
+* NEXT_PUBLIC_CLASSIFICATION_BANNER: banner text
+* NEXT_PUBLIC_COOKIE_DOMAIN: advana.data.mil (Used to store the consent banner in a cookie that is used for all subdomains)
+
 ## Shared functionality included:
 
 ### Components

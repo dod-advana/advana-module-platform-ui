@@ -8,7 +8,8 @@ const UnauthorizedPage = () => {
 		container: {
 			width: '100%',
 			height: '100vh',
-			display: 'flex'
+			display: 'flex',
+			marginTop: '70px'
 		},
 		paper: {
 			width: 700,
@@ -23,7 +24,7 @@ const UnauthorizedPage = () => {
 	};
 
 	return (
-		<div style={styles.container}>
+		<div style={{...styles.container}} data-test-id="unauthorized-page">
 			<Paper style={styles.paper}>
 				<img src={LockImg} alt="lock" style={styles.img} />
 

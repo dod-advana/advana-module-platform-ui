@@ -77,7 +77,7 @@ export default function PrimarySectionLinks({ links = [], activePrimarySection, 
 				<ChevronRightIcon style={{ fontSize: 30 }} />
 			}
 			{isDisabled &&
-				<LinkRight>
+				<LinkRight data-test-id="primary-link-disabled">
 					<BadgeLabel width={'110px'} backgroundColor={disabledColor} color="white">{link.chip || 'In Development'}</BadgeLabel>
 				</LinkRight>
 			}
