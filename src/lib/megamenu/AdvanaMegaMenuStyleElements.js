@@ -1,40 +1,79 @@
-import styled from 'styled-components';
+import React from 'react';
+import { Button, Grid, styled } from '@mui/material';
 
-const MenuTitle = styled.div`
-    font-family: Montserrat;
-    font-size: 30px;
-    font-weight: 600;
-    height: 1.5em;
-`;
+const MenuContentPanel = ({
+	xs = 3,
+	style = {},
+	children,
+}) => {
+	return (
+		<ContentGridItem item xs={xs} style={style}>
+			{children}
+		</ContentGridItem>
+	);
+};
 
-const MenuDescription = styled.div`
-	color: #FFFFFF;
-	font-family: "Noto Sans";
-	font-size: 16px;
-	letter-spacing: 0;
-	line-height: 24px;
-`;
+const ContentGridItem = styled(Grid)({
+	padding: '0 20px',
+	'&::-webkit-scrollbar': {
+		width: 10,
+	},
+	'&::-webkit-scrollbar-track': {
+		background: 'transparent',
+	},
+	'&::-webkit-scrollbar-thumb': {
+		background: 'rgba(255,255,255,0.25)',
+	},
+	'&::-webkit-scrollbar-thumb:hover': {
+		background: 'rgba(255,255,255,1)',
+	},
+});
 
-const columnStyles = {
-	height: '100%',
-	overflow: 'auto'
+const MenuInfoPanel = ({
+	xs = 3,
+	style = {},
+	title,
+	description,
+	buttonBackgroundColor,
+	buttonOnClick,
+}) => {
+	return (
+		<MenuContentPanel xs={xs} style={style}>
+			<InfoPanelTitle>{title}</InfoPanelTitle>
+			<InfoPanelDescription>{description}</InfoPanelDescription>
+			<InfoPanelButton
+				variant={'contained'}
+				size={'large'}
+				color="primary"
+				$buttonBackgroundColor={buttonBackgroundColor}
+				onClick={buttonOnClick}
+			>
+				View Page
+			</InfoPanelButton>
+		</MenuContentPanel>
+	);
 }
 
-const styles = {
-	container: {
-		height: '100%',
-		width: '100%',
-		display: 'flex'
-	},
-	column1: {
-		...columnStyles,
-		paddingLeft: 0
-	},
-	column3: {
-		...columnStyles,
-		borderRight: '1px solid white'
-	},
-	columnStyles
-}
+const InfoPanelTitle = styled('div')({
+	fontFamily: 'Montserrat',
+	fontSize: 30,
+	fontWeight: 600,
+	height: '1.5em',
+});
 
-export { styles, MenuTitle, MenuDescription }
+const InfoPanelDescription = styled('div')({
+	color: '#FFFFFF',
+	fontFamily: "Noto Sans",
+	fontSize: 16,
+	letterSpacing: 0,
+	lineHeight: '24px',
+});
+
+const InfoPanelButton = styled(Button, {
+	shouldForwardProp: (props) => !props.startsWith('$')
+})(({ $buttonBackgroundColor }) => ({
+	marginTop: 20,
+	backgroundColor: $buttonBackgroundColor,
+}));
+
+export { MenuContentPanel, MenuInfoPanel };

@@ -1,5 +1,7 @@
 import React from 'react';
 import AdvanaMegaMenuPill from './megamenu/AdvanaMegaMenuPill';
+import AdvanaMegaMenuPillMinimal from './megamenu/AdvanaMegaMenuPillMinimal';
+
 import Config from './config/config';
 
 const styles = {
@@ -26,7 +28,7 @@ const styles = {
 	}
 };
 
-const ToolPageTitle = ({ logo, alt, beta, unread, extraPillClass = '', showProfileLink = true }) => {
+const ToolPageTitle = ({ logo, alt, beta, unread, extraPillClass = '', showProfileLink = true, offset, minimalPill = false }) => {
 	return (
 		<div style={styles.pageTitleRow}>
 			<div style={{ display: 'inline-flex' }}>
@@ -34,8 +36,10 @@ const ToolPageTitle = ({ logo, alt, beta, unread, extraPillClass = '', showProfi
 				{beta && <div style={styles.beta}>Beta</div>}
 			</div>
 			<div style={{ paddingTop: 10 }} className={extraPillClass}>
-				<AdvanaMegaMenuPill unread={unread} defaultHeader={Config.MEGA_MENU_PILL_DEFAULT_HEADER} margin={'auto 0px'} showProfileLink={showProfileLink}
-				/>
+				{ minimalPill ? 
+					<AdvanaMegaMenuPillMinimal contained />
+					: <AdvanaMegaMenuPill unread={unread} margin={'auto 0px'} showProfileLink={showProfileLink} headerOffset={offset} 				/>
+				}
 			</div>
 		</div>
 

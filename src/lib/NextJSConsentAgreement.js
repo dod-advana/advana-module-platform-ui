@@ -1,39 +1,29 @@
 import * as React from 'react';
-import { Dialog, Button, DialogTitle, DialogContent, DialogActions, Typography } from '@material-ui/core';
-import styled from '@emotion/styled';
+import { Dialog, Button, DialogTitle, DialogContent, DialogActions, Typography, styled } from '@mui/material';
+import Auth from './utilities/Auth';
 
-const AGREEMENT_KEY = 'data.mil-consent-agreed';
-
-const MyDialog = styled((props) => <Dialog {...props} />)`
-	bottom: 100px;
-
-	.MuiTypography-root {
-		margin-bottom: 15px;
-	}
-`;
+const MyDialog = styled(Dialog)({
+	bottom: 100,
+	'& .MuiTypography-root': {
+		marginBottom: 15,
+	},
+});
 
 const getIsOpen = () => {
-	const cookieMap = {};
-	const cookies = document.cookie.split(';');
-	cookies.forEach((cookie) => {
-		const splitCookie = cookie.split('=');
-		cookieMap[splitCookie[0].trim()] = splitCookie[1];
-	});
-	if (!Object.keys(cookieMap).includes(AGREEMENT_KEY)) return true;
-
-	try {
-		const twoHoursAgo = Date.now() - 1000 * 60 * 60 * 2;
-		return new Date(cookieMap[AGREEMENT_KEY]) < twoHoursAgo;
-	} catch (err) {
-		console.error(err);
-		return true;
-	}
+  try {
+    const consent = Auth.getUserConsent();
+    if (!consent) return true;
+    
+    const twoHoursAgo = Date.now() - (1000 * 60 * 60 * 2);
+    return consent < twoHoursAgo;
+  } catch (err) {
+    console.error(err);
+    return true;
+  }
 };
 
-const setAgreementTime = (cookieDomain = 'localhost') => {
-	const futureDate = new Date();
-	futureDate.setUTCDate(futureDate.getUTCDate() + 2);
-	document.cookie = `${AGREEMENT_KEY}=${new Date().toString()};domain=${cookieDomain};expires=${futureDate.toString()}`;
+const setAgreementTime = () => {
+  Auth.refreshUserToken(null, null, { consent: Date.now() });
 };
 
 const ConsentAgreement = ({ navigateTo = 'navigate to the Advana App-wide Agreements on the About page' }) => {
@@ -44,8 +34,8 @@ const ConsentAgreement = ({ navigateTo = 'navigate to the Advana App-wide Agreem
 	}, []);
 
 	return (
-		<MyDialog open={isOpen} maxWidth="md" disableBackdropClick={true} disableEscapeKeyDown={true}>
-			<DialogTitle disableTypography>
+		<MyDialog open={isOpen} maxWidth="md" onClose={(e, reason) => reason !== 'backdropClick'} disableEscapeKeyDown>
+			<DialogTitle>
 				<Typography varient="h3">DoD Notice and Consent Banner</Typography>
 			</DialogTitle>
 			<DialogContent>
@@ -97,7 +87,7 @@ const ConsentAgreement = ({ navigateTo = 'navigate to the Advana App-wide Agreem
 			<DialogActions>
 				<Button
 					onClick={() => {
-						setAgreementTime(process.env.NEXT_PUBLIC_COOKIE_DOMAIN);
+						setAgreementTime();
 						setIsOpen(false);
 					}}
 					variant="contained"
@@ -108,7 +98,7 @@ const ConsentAgreement = ({ navigateTo = 'navigate to the Advana App-wide Agreem
 				</Button>
 			</DialogActions>
 		</MyDialog>
-	);
+    );
 };
 
 export default ConsentAgreement;

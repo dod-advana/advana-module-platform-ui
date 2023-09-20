@@ -1,44 +1,40 @@
 import React from 'react';
-import styled from 'styled-components';
-import { ChevronRight as ChevronRightIcon } from '@material-ui/icons';
+import { styled } from '@mui/material';
+import { ChevronRight as ChevronRightIcon } from '@mui/icons-material';
 import BadgeLabel from './BadgeLabel';
 import { getDisplayedHref } from '../utilities/sitemap';
 
-const Link = styled.a`
-	display: block;
-	color: #DDDDDD;
-	border-top: 1px solid #979797;
+const Link = styled('a', {
+	shouldForwardProp: (props) => props !== 'color' && props !== 'active'
+})(({ active, disabled, color }) => ({
+	display: 'block',
+	color: '#DDDDDD',
+	borderTop: '1px solid #979797',
+	padding: '10px 5px',
+	fontFamily: 'Montserrat',
+	fontSize: 16,
+	fontWeight: 'bold',
+	letterSpacing: 0,
+	lineHeight: '30px',
+	backgroundColor: active ? '#13A792' : 'transparent',
+	display: 'flex',
+	alignItems: 'center',
+	justifyContent: 'space-between',
+	textDecoration: 'none',
+	cursor: disabled ? 'default' : 'unset',
+	'&:visited, &:active, &:hover, &:focus': {
+		textDecoration: 'none',
+		color: color,
+	},
+	'&:last-child': {
+		borderBottom: '1px solid #979797',
+	},
+}));
 
-	padding: 10px 5px;
-	font-family: Montserrat;
-	font-size: 16px;
-	font-weight: bold;
-	letter-spacing: 0;
-	line-height: 30px;
-
-	background-color: ${({ active }) => active ? '#13A792' : 'transparent'};
-
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-
-	text-decoration: none;
-
-	${({ disabled }) => disabled && 'cursor: default;'}
-	&:visited, &:active, &:hover, &:focus {
-		text-decoration: none;
-		color: ${({ color }) => color};
-	}
-
-	&:last-child {
-		border-bottom: 1px solid #979797;
-	}
-`;
-
-const LinkRight = styled.div`
-	display: flex;
-	align-items: center;
-`;
+const LinkRight = styled('div')({
+	display: 'flex',
+	alignItems: 'center',
+});
 
 const disabledColor = '#8091A5';
 

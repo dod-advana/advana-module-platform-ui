@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from '@material-ui/core';
 import _ from 'underscore';
 import PrimarySectionLinks from './PrimarySectionLinks';
 import SecondarySectionLinks from './SecondarySectionLinks';
 
-import { styles, MenuTitle, MenuDescription } from './AdvanaMegaMenuStyleElements';
+import { MenuContentPanel, MenuInfoPanel } from './AdvanaMegaMenuStyleElements';
 import Config from "../config/config";
 
 export default function AdvanaMegaMenuContent({
 	data={},
-	header,
 	redirect
 }) {
 	const [activePrimarySection, setActivePrimarySection] = useState(null);
@@ -29,27 +27,21 @@ export default function AdvanaMegaMenuContent({
 		}
 	}, [activePrimarySection, activeSecondarySection, data]);
 
-	return <div style={styles.container}>
-		<div className="col-xs-3 mega-menu-scrollbar" style={styles.column1}>
-			<MenuTitle>{data.title}</MenuTitle>
-			<MenuDescription>{data.description}</MenuDescription>
-			<Button variant={'contained'}
-				color="primary"
-				size={'large'}
-				style={{ marginTop: 20, backgroundColor: Config.MEGA_MENU_HIGHLIGHT_COLOR }}
-				onClick={() => redirect(data?.link ?? '#', data?.newTab)}
-			>
-				View Page
-			</Button>
-		</div>
-		<div className="col-xs-3 mega-menu-scrollbar" style={styles.columnStyles}>
+	return <>
+		<MenuInfoPanel
+			title={data.title}
+			description={data.description}
+			buttonBackgroundColor={Config.MEGA_MENU_HIGHLIGHT_COLOR}
+			buttonOnClick={() => redirect(data?.link ?? '#', data?.newTab)}
+		/>
+		<MenuContentPanel>
 			<PrimarySectionLinks links={data.links} activePrimarySection={activePrimarySection} setActivePrimarySection={setActivePrimarySection} redirect={redirect} />
-		</div>
-		<div className="col-xs-3 mega-menu-scrollbar" style={activePrimarySection ? styles.column3 : styles.columnStyles}>
+		</MenuContentPanel>
+		<MenuContentPanel style={activePrimarySection ? {borderRight: '1px solid white'} : {}}>
 			<SecondarySectionLinks links={secondaryLinks?.links} activeSecondarySection={activeSecondarySection} setActiveSecondarySection={setActiveSecondarySection} redirect={redirect} />
-		</div>
-		<div className="col-xs-3 mega-menu-scrollbar" style={styles.columnStyles}>
+		</MenuContentPanel>
+		<MenuContentPanel>
 			<SecondarySectionLinks links={tertiaryLinks?.links} tertiary={true} redirect={redirect} />
-		</div>
-	</div>
+		</MenuContentPanel>
+	</>
 }

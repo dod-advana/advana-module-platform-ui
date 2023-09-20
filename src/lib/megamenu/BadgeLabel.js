@@ -1,17 +1,23 @@
-import styled from 'styled-components';
+import { styled } from '@mui/material';
 
-export default styled.div`
-	color: ${({ color }) => (color) ? color : 'black'};
-	background-color: ${({ backgroundColor }) => (backgroundColor) ? backgroundColor : 'white'};
-	width: ${({ width }) => (width) ? width : '100px'};
-	border-radius: 14px;
-	padding: 2px 8px;
+const badgeStyles = ({ color, backgroundColor, width }) => ({
+	color: color ? color : 'black',
+	backgroundColor: backgroundColor ? backgroundColor : 'white',
+	width: width ? width : 100,
+	borderRadius: 14,
+	padding: '2px 8px',
+	fontFamily: 'Noto Sans',
+	fontSize: 10,
+	fontWeight: 'bold',
+	letterSpacing: 0,
+	lineHeight: '17px',
+	textAlign: 'center',
+});
 
-	
-	font-family: "Noto Sans";
-	font-size: 10px;
-	font-weight: bold;
-	letter-spacing: 0;
-	line-height: 17px;
-	text-align: center;
-`;
+export default styled('div', {
+	shouldForwardProp: (props) => props !== 'color' && props !== 'backgroundColor' && props !== 'width'
+})(badgeStyles);
+
+export const LinkableBadgeLabel = styled('a', {
+	shouldForwardProp: (props) => props !== 'color' && props !== 'backgroundColor' && props !== 'width'
+})(badgeStyles);

@@ -11,7 +11,7 @@ import AdvanaApprovedLogo from "./images/logos/Advana_Approved.png";
 import AdvanaImg from "./images/advana.png";
 import AdvanaDarkTheme from "./images/AdvanaDarkTheme.png";
 import AdvanaLightTheme from "./images/AdvanaLightTheme.png";
-import CDAOLogo from "./images/CDAO_logo.png";
+import CDAOLogo from "./images/cdaoLogo.png";
 import DODColorLogo from "./images/DOD_color.png";
 import JupiterDONLogo from "./images/Jupiter_DON_logo.png";
 import JupiterLogo from "./images/Jupiter_logo.png";
@@ -32,6 +32,7 @@ import PrivateRoute from "./routing/PrivateRoute";
 // utilities
 import Auth from "./utilities/Auth";
 import Permissions from "./utilities/permissions";
+import ScrollToTop from "./utilities/ScrollTo";
 
 // theme
 import ThemeDefault from "./theme-default";
@@ -64,6 +65,7 @@ export {
   PoweredByLogo,
   StackedLogo,
   SearchBar,
+  ScrollToTop,
   LoadingIndicator,
   AdvanaMegaMenu,
   PrivateRoute,

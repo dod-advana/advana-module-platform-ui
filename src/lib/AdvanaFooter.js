@@ -1,75 +1,72 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-import { Button, Modal } from '@material-ui/core';
+import { Button, Modal, styled } from '@mui/material';
 import { changePage, getDynamicHeaderButtons, useMegaMenuLinks } from "./utilities/sitemap";
 import CDAOLogo from './images/logos/cdao_logo.png';
-import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({
-	disclaimerModalContainer: {
-		marginTop: '2em', // adjusting for classification banner
-		paddingTop: ({ offset }) => offset ?? offset, // adjust for additional banners
+const StyledModal = styled(Modal, {
+	shouldForwardProp: (props) => props !== 'offset'
+})(({ offset }) => ({
+	marginTop: '2em', // adjusting for classification banner
+	paddingTop: offset, // adjust for additional banners
+}));
+
+const FooterContainer = styled('div')({
+	display: 'flex',
+	height: 90,
+	width: '100%',
+	alignItems: 'center',
+	justifyContent: 'flex-end',
+	backgroundColor: 'black',
+	color: 'white',
+});
+
+const LinkButton = styled(Button)({
+	'&&': {
+		backgroundColor: 'transparent',
+		fontWeight: 600,
+		borderBottom: '3px solid transparent',
+		color: 'white',
+		height: '3em',
+		fontFamily: 'Montserrat',
+		paddingLeft: 10,
 	},
 });
 
-const FooterContainer = styled.div`
-	display: flex;
-	height: 90px;
-	width: 100%;
-	align-items: center;
-	justify-content: flex-end;
-	background-color: black;
-	color: white;
-`;
+const Spacer = styled('div')({
+	flex: 1,
+});
 
-const LinkButton = styled(Button)`
-	&& {
-		background-color: transparent;
-		font-weight: 600;
-		border-bottom: 3px solid transparent;
-		color: white;
-		height: 3em;
-		font-family: Montserrat;
-	};
-`;
+const LinkContainer = styled('div')({
+	display: 'flex',
+	flex: 25,
+	justifyContent: 'flex-end',
+});
 
-const Spacer = styled.div`
-	flex: 1;
-`;
+const DisclaimerModal = styled('div')({
+	width: '50%',
+	backgroundColor: 'white',
+	padding: 20,
+	borderRadius: 5,
+	margin: '5% auto',
+	height: '71%',
+	overflow: 'scroll',
+});
 
-const LinkContainer = styled.div`
-	display: flex;
-	flex: 25;
-	justify-content: flex-end;
-`;
+const ButtonRow = styled('div')({
+	display: 'flex',
+	justifyContent: 'flex-end',
+	margin: '10 0 0 0',
+});
 
-const DisclaimerModal = styled.div`
-	width: 50%;
-	background-color: white;
-	padding: 20px;
-	border-radius: 5px;
-	margin: 5% auto;
-	height: 71%; 
-	overflow: scroll;
-`;
-
-const ButtonRow = styled.div`
-	display: flex;
-	justify-content: flex-end;
-	margin: 10px 0 0 0;
-`;
-
-const LogosSection = styled.div`
-	padding-left: 50px;
-	display: flex;
-
-	img {
-		width: 140px;
-	}
-`;
+const LogosSection = styled('div')({
+	paddingLeft: 50,
+	display: 'flex',
+	'& img': {
+		width: 140,
+	},
+});
 
 const AdvanaFooter = ({ extraLinks, offset }) => {
-	const classes = useStyles({ offset: offset });
 	let links = useMegaMenuLinks();
 	const headerButtons = getDynamicHeaderButtons(links);
 
@@ -95,10 +92,10 @@ const AdvanaFooter = ({ extraLinks, offset }) => {
 				<LinkButton key='disclaimer' onClick={() => setDisclaimerModalOpen(true)}>Disclaimer</LinkButton>
 			</LinkContainer>
 			<Spacer />
-			<Modal
+			<StyledModal
 				open={disclaimerModalOpen}
 				onClose={() => setDisclaimerModalOpen(false)}
-				className={classes.disclaimerModalContainer}
+				offset={offset}
 			>
 				<DisclaimerModal>
 					<div>
@@ -115,7 +112,7 @@ const AdvanaFooter = ({ extraLinks, offset }) => {
 						<Button variant="contained" onClick={() => setDisclaimerModalOpen(false)}>Close</Button>
 					</ButtonRow>
 				</DisclaimerModal>
-			</Modal>
+			</StyledModal>
 		</FooterContainer>
 	);
 }
