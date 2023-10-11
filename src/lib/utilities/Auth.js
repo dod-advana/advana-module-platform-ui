@@ -78,6 +78,17 @@ class Auth {
 		else { return null; }
 	}
 
+	/**
+	 * Gets the local date/time the user accepted the consent agreement in the 
+	 * current session. If the consent agreement has not been accepted, this
+	 * returns null.
+	 * @returns {Date}
+	 */
+	static getUserConsent() {
+		const timestamp = this.getTokenPayload()?.consent;
+		return !timestamp ? null : new Date(timestamp);
+	}
+
 	static userDisabled() {
 		const tokenPayload = this.getTokenPayload();
 		if (tokenPayload != null) {
