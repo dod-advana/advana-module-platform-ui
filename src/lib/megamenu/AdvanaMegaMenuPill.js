@@ -15,7 +15,6 @@ const AdvanaMegaMenuPill = (props) => {
     padding,
     defaultHeader,
     headerOffset = 0,
-    backgroundColor = "gainsboro",
     iconColor = "black",
   } = props;
   const { trackEvent } = useMatomo();
@@ -60,7 +59,6 @@ const AdvanaMegaMenuPill = (props) => {
           top: menuOpen ? "calc(65px + " + headerOffset + ")" : "",
           right: menuOpen ? 100 : "",
           zIndex: menuOpen ? 0 : 1010,
-          backgroundColor: backgroundColor,
         }}
         data-test-id="megamenu-pill"
       >
@@ -69,7 +67,7 @@ const AdvanaMegaMenuPill = (props) => {
           style={{ color: iconColor }}
           onClick={toggleMenu}
         >
-          <MenuIcon />
+          <MenuIcon fontSize="large" />
         </IconButton>
         <IconButton
           component="a"
@@ -79,7 +77,7 @@ const AdvanaMegaMenuPill = (props) => {
           rel="noopener noreferrer"
           style={{ color: iconColor }}
         >
-          <HomeIcon />
+          <HomeIcon fontSize="large" />
         </IconButton>
         <IconButton
           component="a"
@@ -89,7 +87,7 @@ const AdvanaMegaMenuPill = (props) => {
           rel="noopener noreferrer"
           style={{ color: iconColor }}
         >
-          <PersonIcon />
+          <PersonIcon fontSize="large" />
         </IconButton>
       </Box>
       <Box
