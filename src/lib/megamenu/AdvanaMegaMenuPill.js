@@ -90,32 +90,34 @@ const AdvanaMegaMenuPill = (props) => {
           <PersonIcon fontSize="large" />
         </IconButton>
       </Box>
-      <Box
-        style={{
-          width: "100vw",
-          height: menuOpen ? "100vh" : 0,
-          overflow: menuOpen ? "visible" : "hidden",
-          marginTop: 0,
-          color: "white",
-          zIndex: 1000,
-          position: "fixed",
-          transition: "left .6s",
-          top:
-            headerOffset && headerOffset !== 0
-              ? "calc(30px + " + headerOffset + ")"
-              : 30,
-          left: menuOpen ? 0 : "100vw",
-          fontSize: 16,
-        }}
-      >
-        <AdvanaMegaMenu
-          showCloseButton={false}
-          pillMenu={true}
-          defaultHeader={defaultHeader}
-          defaultMenuOpen={menuOpen}
-          toggleMenu={toggleMenu}
-        />
-      </Box>
+      {menuOpen && (
+        <Box
+          style={{
+            width: "100vw",
+            height: menuOpen ? "100vh" : 0,
+            overflow: menuOpen ? "visible" : "hidden",
+            marginTop: 0,
+            color: "white",
+            zIndex: 1000,
+            position: "fixed",
+            transition: "left .6s",
+            top:
+              headerOffset && headerOffset !== 0
+                ? "calc(30px + " + headerOffset + ")"
+                : 30,
+            left: menuOpen ? 0 : "100vw",
+            fontSize: 16,
+          }}
+        >
+          <AdvanaMegaMenu
+            showCloseButton={false}
+            pillMenu={true}
+            defaultHeader={defaultHeader}
+            defaultMenuOpen={menuOpen}
+            toggleMenu={toggleMenu}
+          />
+        </Box>
+      )}
     </>
   );
 };
