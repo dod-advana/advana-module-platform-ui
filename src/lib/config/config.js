@@ -41,8 +41,8 @@ const configObject = {
     window?.__env__?.REACT_APP_PROFILE_LINK ||
     process.env.REACT_APP_PROFILE_LINK,
   COOKIE_DOMAIN:
-    window?.__env__?.REACT_APP_COOKIE_DOMAIN ||
-    process.env.REACT_APP_COOKIE_DOMAIN ||
+    "https://" + window?.__env__?.REACT_APP_COOKIE_DOMAIN ||
+    "https://" + process.env.REACT_APP_COOKIE_DOMAIN ||
     "http://advana.data.mil",
   BANNER_LINK:
     window?.__env__?.REACT_APP_BANNERS_ENDPOINT ||
